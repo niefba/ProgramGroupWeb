@@ -1,4 +1,4 @@
-# Program Group for Club Med by Rupil
+# Program Group Web
 
 Nécessite NodeJS et NPM
 
