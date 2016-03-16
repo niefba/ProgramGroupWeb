@@ -1,0 +1,22 @@
+{
+  "name": "program-group",
+  "version": "1.0.0",
+  "description": "ProgramGroup for Club Med by Rupil",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Fabien Tillon",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "angular": "1.5.1",
+    "angular-route": "1.5.1",
+    "body-parser": "1.15.0",
+    "bootstrap": "3.3.6",
+    "couchbase": "2.1.4",
+    "express": "4.13.4",
+    "jquery": "2.2.1",
+    "jwt-simple": "0.5.0",
+    "ottoman": "1.0.3"
+  }
+}

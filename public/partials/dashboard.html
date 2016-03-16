@@ -1,0 +1,18 @@
+<div class="alert alert-warning" ng-show="data.error">
+  <strong>Warning!</strong>
+  {{ data.error }}
+</div>
+<div ng-hide="data.error">
+  <h3>Op {{ data.opNumero }}</h3>
+  <ul>
+  	<li ng-show="data.village">Village: {{ data.village }}</li>
+  	<li ng-show="data.commercial">Commercial: {{ data.commercial }}</li>
+  	<li ng-show="data.projectManager">Project Manager: {{ data.projectManager }}</li>
+  	<li ng-show="data.chargeProd">Charge Prod: {{ data.chargeProd }}</li>
+  	<li ng-show="data.company">Company: {{ data.company }}</li>
+  	<li ng-show="data.dateDepart">Depart: {{ data.dateDepart }}</li>
+  	<li ng-show="data.dateReturn">Return: {{ data.dateReturn }}</li>
+  	<li ng-show="data.nbPaxInit">Pax Init: {{ data.nbPaxInit }}</li>
+  	<li ng-show="data.nbPaxRealNa">Pax Real Na: {{ data.nbPaxRealNa }}</li>
+  </ul>
+</div>
