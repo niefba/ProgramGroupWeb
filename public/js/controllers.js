@@ -3,9 +3,10 @@
 /* Controllers */
 var programGroupControllers = angular.module('programGroupControllers', []);
 
-programGroupControllers.controller('AppCtrl', ['$scope',
-  function ($scope) {
-    
+programGroupControllers.controller('AppCtrl', ['$scope', '$filter', 'Translation',
+  function ($scope, $filter, Translation) {
+    $scope.label = Translation.getLabel();
+    $scope.lang = 'fr';
   }]);
 
 programGroupControllers.controller('DashboardCtrl', ['$scope', '$routeParams', '$http',

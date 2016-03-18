@@ -1,6 +1,9 @@
 'use strict';
 
 var programGroupApp = angular.module('programGroupApp', [
+  'app.filters',
+  'app.services',
+  'app.directives',
   'ngRoute',
   'programGroupControllers'
 ]);

@@ -1,18 +1,201 @@
-<div class="alert alert-warning" ng-show="data.error">
-  <strong>Warning!</strong>
-  {{ data.error }}
-</div>
-<div ng-hide="data.error">
-  <h3>Op {{ data.opNumero }}</h3>
-  <ul>
-  	<li ng-show="data.village">Village: {{ data.village }}</li>
-  	<li ng-show="data.commercial">Commercial: {{ data.commercial }}</li>
-  	<li ng-show="data.projectManager">Project Manager: {{ data.projectManager }}</li>
-  	<li ng-show="data.chargeProd">Charge Prod: {{ data.chargeProd }}</li>
-  	<li ng-show="data.company">Company: {{ data.company }}</li>
-  	<li ng-show="data.dateDepart">Depart: {{ data.dateDepart }}</li>
-  	<li ng-show="data.dateReturn">Return: {{ data.dateReturn }}</li>
-  	<li ng-show="data.nbPaxInit">Pax Init: {{ data.nbPaxInit }}</li>
-  	<li ng-show="data.nbPaxRealNa">Pax Real Na: {{ data.nbPaxRealNa }}</li>
-  </ul>
+<div class="row">
+  <div class="alert alert-warning" ng-show="data.error">
+    <strong>Warning!</strong>
+    {{ data.error }}
+  </div>
+  
+  <div class="col-md-5" ng-hide="data.error">
+    <h2>
+      {{ label.transactionNumber | translate:lang }} {{ data.transactionNumber | translate:lang }}
+      <button type="button" class="btn btn-primary pull-right">
+        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+        {{ label.edit | translate:lang }}
+      </button>
+    </h2>
+    <dl class="dl-horizontal well well-sm">
+      <dt ng-show="data.chiefOfVillage">{{ label.chiefOfVillage | translate:lang }}</dt><dd>{{ data.chiefOfVillage }}</dd>
+      <dt ng-show="data.resortManager">{{ label.resortManager | translate:lang }}</dt><dd>{{ data.resortManager }}</dd>
+    	<dt ng-show="data.resort">{{ label.resort | translate:lang }}</dt><dd>{{ data.resort }}</dd>
+    	<dt ng-show="data.salePerson">{{ label.salePerson | translate:lang }}</dt><dd>{{ data.salePerson }}</dd>
+      <dt ng-show="data.executivePerson">{{ label.executivePerson | translate:lang }}</dt><dd>{{ data.executivePerson }}</dd>
+    	<dt ng-show="data.eventManager">{{ label.eventManager | translate:lang }}</dt><dd>{{ data.eventManager }}</dd>
+    	<dt ng-show="data.company">{{ label.company | translate:lang }}</dt><dd>{{ data.company }}</dd>
+      <dt ng-show="data.remarks">{{ label.remarks | translate:lang }}</dt><dd>{{ data.remarks }}</dd>
+      <dt ng-show="data.companyActivity">{{ label.companyActivity | translate:lang }}</dt><dd>{{ data.companyActivity }}</dd>
+      <dt ng-show="data.aimOfMeeting">{{ label.aimOfMeeting | translate:lang }}</dt><dd>{{ data.aimOfMeeting }}</dd>
+      <dt ng-show="data.leader">{{ label.leader | translate:lang }}</dt><dd>{{ data.leader }}</dd>
+      <dt ng-show="data.leaderFunction">{{ label.leaderFunction | translate:lang }}</dt><dd>{{ data.leaderFunction }}</dd>
+    	<dt ng-show="data.dateDepart">{{ label.dates | translate:lang }}</dt><dd>{{ label.from | translate:lang }} {{ data.dateDepart }} {{ label.to | translate:lang }} {{ data.dateReturn }}</dd>
+    	<dt ng-show="data.nbPaxRealNa">{{ label.numbreOfPeople | translate:lang }}</dt><dd>{{ data.nbPaxRealNa }}</dd>
+      <dt ng-show="data.nbPaxInit">{{ label.numbreOfPeople | translate:lang }}</dt><dd>{{ data.nbPaxInit }}</dd>
+    </dl>
+  </div>
+
+  <!--
+  "eventPersonalization" : {"fr": "Personnalisation Evénementielle", "en": "Event Personalization"},
+  "vipOffered"           : {"fr": "VIP offert", "en": "VIP welcome offered"},
+  "vip"                  : {"fr": "VIP", "en": "VIP paying welcome"},
+  "gift"                 : {"fr": "Cadeau", "en": "Gift"},
+  "arrivalNoTransfer"    : {"fr": "Arrivée sans transfert", "en": "Arrival with no transfers"},
+  "departNoTransfer"     : {"fr": "Départ sans transfert", "en": "Departure with no transfer"},
+  "transferArrival"      : {"fr": "Transfert Arrivée", "en": "Transfer on arrival"},
+  "transfertDepart"      : {"fr": "Transfert Départ", "en": "Transfer on departure"},
+  "coffeeBreaks"         : {"fr": "Pauses", "en": "Coffee Breaks"},
+  "cocktails"            : {"fr": "Cocktails", "en": "Cocktails"},
+  "restaurantIncluded"   : {"fr": "Restaurant SF", "en": "Restaurant included"},
+  "restaurantExtra"      : {"fr": "Restaurant AF", "en": "Restaurant with extra fees"},
+  "additionalMeals"      : {"fr": "Repas supplémentaires", "en": "Additional meals"},
+  "conferenceRooms"      : {"fr": "Salles", "en": "Conference rooms"},
+  "basicEquipment"       : {"fr": "Matériel base", "en": "Basic equipment"},
+  "rentalEquipment"      : {"fr": "Matériel location", "en": "Rental equipment"},
+  "discovery"            : {"fr": "Espace Découverte", "en": "Discovery"},
+  "otherServices"        : {"fr": "Prestations diverses", "en": "Other services"},
+  "skiRental"            : {"fr": "Location de skis", "en": "Ski rental"},
+  "skiBootRental"        : {"fr": "Location de chaussures", "en": "Ski boot rental"},
+  "skiInstructor"        : {"fr": "Moniteur", "en": "Ski instructor"},
+  -->
+  <div class="col-md-3" ng-hide="data.error">
+    <h2>{{ label.services | translate:lang }}</h2>
+    <ul class="list-unstyled">
+      <li><a href="javascript:void(0)">{{ label.eventPersonalization | translate:lang }}</a> <span class="badge">4</span></li>
+      <li><a href="javascript:void(0)">{{ label.vipOffered | translate:lang }}</a> <span class="badge"></span></li>
+      <li><a href="javascript:void(0)">{{ label.vip | translate:lang }}</a> <span class="badge">7</span></li>
+      <li><a href="javascript:void(0)">{{ label.gift | translate:lang }}</a> <span class="badge">1</span></li>
+      <li><a href="javascript:void(0)">{{ label.arrivalNoTransfer | translate:lang }}</a> <span class="badge"></span></li>
+      <li><a href="javascript:void(0)">{{ label.departNoTransfer | translate:lang }}</a> <span class="badge"></span></li>
+      <li><a href="javascript:void(0)">{{ label.transferArrival | translate:lang }}</a> <span class="badge"></span></li>
+      <li><a href="javascript:void(0)">{{ label.transfertDepart | translate:lang }}</a> <span class="badge"></span></li>
+      <li><a href="javascript:void(0)">{{ label.coffeeBreaks | translate:lang }}</a> <span class="badge"></span></li>
+      <li><a href="javascript:void(0)">{{ label.cocktails | translate:lang }}</a> <span class="badge">4</span></li>
+      <li><a href="javascript:void(0)">{{ label.restaurantIncluded | translate:lang }}</a> <span class="badge"></span></li>
+      <li><a href="javascript:void(0)">{{ label.restaurantExtra | translate:lang }}</a> <span class="badge"></span></li>
+      <li><a href="javascript:void(0)">{{ label.additionalMeals | translate:lang }}</a> <span class="badge">5</span></li>
+      <li><a href="javascript:void(0)">{{ label.conferenceRooms | translate:lang }}</a> <span class="badge">2</span></li>
+      <li><a href="javascript:void(0)">{{ label.basicEquipment | translate:lang }}</a> <span class="badge">1</span></li>
+      <li><a href="javascript:void(0)">{{ label.rentalEquipment | translate:lang }}</a> <span class="badge"></span></li>
+      <li><a href="javascript:void(0)">{{ label.discovery | translate:lang }}</a> <span class="badge">3</span></li>
+      <li><a href="javascript:void(0)">{{ label.otherServices | translate:lang }}</a> <span class="badge"></span></li>
+      <li><a href="javascript:void(0)">{{ label.skiRental | translate:lang }}</a> <span class="badge"></span></li>
+      <li><a href="javascript:void(0)">{{ label.skiBootRental | translate:lang }}</a> <span class="badge"></span></li>
+      <li><a href="javascript:void(0)">{{ label.skiInstructor | translate:lang }}</a> <span class="badge">2</span></li>
+    </ul>
+  </div>
+
+  <div class="col-md-4" ng-hide="data.error">
+    <h2>{{ label.documents | translate:lang }}
+      <div class="btn-group pull-right">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="glyphicon glyphicon-print" aria-hidden="true"></span> {{ label.print | translate:lang }} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#">{{ label.printProgram | translate:lang }}</a></li>
+          <li><a href="#">{{ label.printTables | translate:lang }}</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#">{{ label.printAll | translate:lang }}</a></li>
+        </ul>
+      </div>
+    </h2>
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <ul class="list-unstyled">
+          <li><a href="javascript:void(0)">{{ label.infoLetter | translate:lang }}</a></li>
+          <li><a href="javascript:void(0)">{{ label.importedInfoLetter | translate:lang }}</a></li>
+          <li><a href="javascript:void(0)">{{ label.OpenTextForProgram | translate:lang }}</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <p>
+      <button type="button" class="btn btn-primary btn-block">
+        {{ label.programCreation | translate:lang }}
+      </button>
+      <button type="button" class="btn btn-default btn-block">
+        {{ label.emailSending | translate:lang }}
+      </button>
+      <button type="button" class="btn btn-default btn-block">
+        {{ label.calculateService | translate:lang }}
+      </button>
+    </p>
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <ul class="list-unstyled">
+          <li><a href="javascript:void(0)">{{ label.contractualExtras | translate:lang }}</a></li>
+          <li><a href="javascript:void(0)">{{ label.nonContractualExtras | translate:lang }}</a></li>
+          <li><a href="javascript:void(0)">{{ label.clubMedExtras | translate:lang }}</a></li>
+          <li><a href="javascript:void(0)">{{ label.planningReport | translate:lang }}</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <!--div class="col-md-5" ng-hide="data.error">
+    <h2>{{ label.services | translate:lang }}</h2>
+    <button type="button" class="btn btn-default btn-block btn-primary">
+      {{ label.eventPersonalization | translate:lang }}
+      <span class="badge">4</span>
+    </button>
+    <button type="button" class="btn btn-default btn-block">
+      {{ label.vipOffered | translate:lang }}
+    </button>
+    <button type="button" class="btn btn-default btn-block">
+      {{ label.vip | translate:lang }}
+    </button>
+    <button type="button" class="btn btn-default btn-block">
+      {{ label.gift | translate:lang }}
+    </button>
+    <button type="button" class="btn btn-default btn-block">
+      {{ label.arrivalNoTransfer | translate:lang }}
+    </button>
+    <button type="button" class="btn btn-default btn-block">
+      {{ label.departNoTransfer | translate:lang }}
+    </button>
+    <button type="button" class="btn btn-default btn-block">
+      {{ label.transferArrival | translate:lang }}
+    </button>
+    <button type="button" class="btn btn-default btn-block">
+      {{ label.transfertDepart | translate:lang }}
+    </button>
+    <button type="button" class="btn btn-default btn-block">
+      {{ label.coffeeBreaks | translate:lang }}
+    </button>
+    <button type="button" class="btn btn-default btn-block">
+      {{ label.cocktails | translate:lang }}
+    </button>
+    <button type="button" class="btn btn-default btn-block">
+      {{ label.restaurantIncluded | translate:lang }}
+    </button>
+    <button type="button" class="btn btn-default btn-block">
+      {{ label.additionalMeals | translate:lang }}
+    </button>
+    <button type="button" class="btn btn-default btn-block">
+      {{ label.restaurantExtra | translate:lang }}
+    </button>
+    <button type="button" class="btn btn-default btn-block">
+      {{ label.conferenceRooms | translate:lang }}
+    </button>
+    <button type="button" class="btn btn-default btn-block">
+      {{ label.basicEquipment | translate:lang }}
+    </button>
+    <button type="button" class="btn btn-default btn-block">
+      {{ label.rentalEquipment | translate:lang }}
+    </button>
+    <button type="button" class="btn btn-default btn-block">
+      {{ label.discovery | translate:lang }}
+    </button>
+    <button type="button" class="btn btn-default btn-block">
+      {{ label.otherServices | translate:lang }}
+    </button>
+    <button type="button" class="btn btn-default btn-block">
+      {{ label.skiRental | translate:lang }}
+    </button>
+    <button type="button" class="btn btn-default btn-block">
+      {{ label.skiBootRental | translate:lang }}
+    </button>
+    <button type="button" class="btn btn-default btn-block">
+      {{ label.skiInstructor | translate:lang }}
+    </button>
+  </div-->
+
 </div>

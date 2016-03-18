@@ -30,6 +30,7 @@ app.use('/img', express.static(__dirname + '/public/img'));
 app.use('/js', express.static(__dirname + '/public/js'));
 app.use('/partials', express.static(__dirname + '/public/partials'));
 
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE0NTgyNTE0MjUsImlhdCI6MTQ1ODI1MTQyNSwiZXhwIjoxNDU4MzM3ODI1LCJ0cmFuc2FjdGlvbk51bWJlciI6IjIyMTExNyIsInJlc29ydCI6IkNsdWIgTWVkIFR3byIsInNhbGVQZXJzb24iOiJOYXRoYWxpZSBMRU1BSVJFLVNUUk9VQkFOVEUiLCJldmVudE1hbmFnZXIiOiJTYW1pYSBTTk9VU1NJIiwiZXhlY3V0aXZlUGVyc29uIjoiIiwiY29tcGFueSI6IlRPVEFMIExVQlJJRklBTlRTIiwiZGF0ZURlcGFydCI6IjEzLzExLzIwMTUiLCJkYXRlUmV0dXJuIjoiMjEvMTEvMjAxNSIsIm5iUGF4SW5pdCI6IjMwMSIsIm5iUGF4UmVhbE5hIjoiIn0.hMybUhi84ZY5bdmzyS1IQQNVwBqwqro1c2lDFfIAWhk
 app.get('/token/:key', function(req, res, next) {
   // Handle the get for this route
   res.sendFile(__dirname + '/public/index.html');
