@@ -1,0 +1,136 @@
+<div>
+  <div class="modal-backdrop fade in"></div>
+  <div class="modal fade in">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" ng-click="closeTemplate()"><span>&times;</span></button>
+          <h4 class="modal-title">{{ label.transactionNumber | translate:lang }} {{ data.transactionNumber | translate:lang }}</h4>
+        </div>
+        
+        <div class="modal-body">
+          
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label for="chiefOfVillage" class="col-sm-5 control-label">{{ label.chiefOfVillage | translate:lang }}</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="chiefOfVillage" ng-model="data.chiefOfVillage" placeholder="{{ label.chiefOfVillage | translate:lang }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="resortManager" class="col-sm-5 control-label">{{ label.resortManager | translate:lang }}</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="resortManager" ng-model="data.resortManager" placeholder="{{ label.resortManager | translate:lang }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="resort" class="col-sm-5 control-label">{{ label.resort | translate:lang }}</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="resort" ng-model="data.resort" placeholder="{{ label.resort | translate:lang }}">
+              </div>
+            </div>
+            <!--div class="form-group">
+              <label for="salePerson" class="col-sm-5 control-label">{{ label.salePerson | translate:lang }}</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="salePerson" ng-model="data.salePerson" placeholder="{{ label.salePerson | translate:lang }}" readonly>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="executivePerson" class="col-sm-5 control-label">{{ label.executivePerson | translate:lang }}</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="executivePerson" ng-model="data.executivePerson" placeholder="{{ label.executivePerson | translate:lang }}" readonly>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="eventManager" class="col-sm-5 control-label">{{ label.eventManager | translate:lang }}</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="eventManager" ng-model="data.eventManager" placeholder="{{ label.eventManager | translate:lang }}" readonly>
+              </div>
+            </div-->
+            <div class="form-group">
+              <label for="company" class="col-sm-5 control-label">{{ label.company | translate:lang }}</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="company" ng-model="data.company" placeholder="{{ label.company | translate:lang }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="remarks" class="col-sm-5 control-label">{{ label.remarks | translate:lang }}</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="remarks" ng-model="data.remarks" placeholder="{{ label.remarks | translate:lang }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="companyActivity" class="col-sm-5 control-label">{{ label.companyActivity | translate:lang }}</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="companyActivity" ng-model="data.companyActivity" placeholder="{{ label.companyActivity | translate:lang }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="aimOfMeeting" class="col-sm-5 control-label">{{ label.aimOfMeeting | translate:lang }}</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="aimOfMeeting" ng-model="data.aimOfMeeting" placeholder="{{ label.aimOfMeeting | translate:lang }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="leader" class="col-sm-5 control-label">{{ label.leader | translate:lang }}</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="leader" ng-model="data.leader" placeholder="{{ label.leader | translate:lang }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="leaderFunction" class="col-sm-5 control-label">{{ label.leaderFunction | translate:lang }}</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="leaderFunction" ng-model="data.leaderFunction" placeholder="{{ label.leaderFunction | translate:lang }}">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="dateFrom" class="col-sm-5 control-label">{{ label.dateFrom | translate:lang }}</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="dateFrom" ng-model="data.dateFrom" placeholder="{{ label.dateFrom | translate:lang }}">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="dateTo" class="col-sm-5 control-label">{{ label.dateTo | translate:lang }}</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="dateTo" ng-model="data.dateTo" placeholder="{{ label.dateTo | translate:lang }}">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="nbPaxInit" class="col-sm-5 control-label">{{ label.numbreOfPeople | translate:lang }}</label>
+              <div class="col-sm-7">
+                <input type="number" class="form-control" id="nbPaxInit" ng-model="data.nbPaxInit" placeholder="{{ label.numbreOfPeople | translate:lang }}">
+              </div>
+            </div>
+          </form>
+
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" ng-click="closeTemplate()">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+      <dt ng-show="data.chiefOfVillage">{{ label.chiefOfVillage | translate:lang }}</dt><dd>{{ data.chiefOfVillage }}</dd>
+      <dt ng-show="data.resortManager">{{ label.resortManager | translate:lang }}</dt><dd>{{ data.resortManager }}</dd>
+      <dt ng-show="data.resort">{{ label.resort | translate:lang }}</dt><dd>{{ data.resort }}</dd>
+      <dt ng-show="data.salePerson">{{ label.salePerson | translate:lang }}</dt><dd>{{ data.salePerson }}</dd>
+      <dt ng-show="data.executivePerson">{{ label.executivePerson | translate:lang }}</dt><dd>{{ data.executivePerson }}</dd>
+      <dt ng-show="data.eventManager">{{ label.eventManager | translate:lang }}</dt><dd>{{ data.eventManager }}</dd>
+      <dt ng-show="data.company">{{ label.company | translate:lang }}</dt><dd>{{ data.company }}</dd>
+      <dt ng-show="data.remarks">{{ label.remarks | translate:lang }}</dt><dd>{{ data.remarks }}</dd>
+      <dt ng-show="data.companyActivity">{{ label.companyActivity | translate:lang }}</dt><dd>{{ data.companyActivity }}</dd>
+      <dt ng-show="data.aimOfMeeting">{{ label.aimOfMeeting | translate:lang }}</dt><dd>{{ data.aimOfMeeting }}</dd>
+      <dt ng-show="data.leader">{{ label.leader | translate:lang }}</dt><dd>{{ data.leader }}</dd>
+      <dt ng-show="data.leaderFunction">{{ label.leaderFunction | translate:lang }}</dt><dd>{{ data.leaderFunction }}</dd>
+      <dt ng-show="data.dateDepart">{{ label.dates | translate:lang }}</dt><dd>{{ label.from | translate:lang }} {{ data.dateDepart }} {{ label.to | translate:lang }} {{ data.dateReturn }}</dd>
+      <dt ng-show="data.nbPaxRealNa">{{ label.numbreOfPeople | translate:lang }}</dt><dd>{{ data.nbPaxRealNa }}</dd>
+      <dt ng-show="data.nbPaxInit">{{ label.numbreOfPeople | translate:lang }}</dt><dd>{{ data.nbPaxInit }}</dd>-->

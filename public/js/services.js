@@ -34,6 +34,8 @@ angular.module('app.services', [], function($provide) {
 			"leader"               : {"fr": "Nom du responsable", "en": "Name of group leader"},
 			"leaderFunction"       : {"fr": "Fonction du responsable", "en": "Function of group leader"},
 			"dates"                : {"fr": "Dates de séjour", "en": "Dates"},
+      "dateFrom"             : {"fr": "Arrivée", "en": "Arrival"},
+      "dateTo"               : {"fr": "Départ", "en": "Departure"},
 			"numbreOfPeople"       : {"fr": "Nombre de participants", "en": "No. of people"},
 			"transactionNumber"    : {"fr": "N° opération", "en": "Transaction #"},
 			"eventPersonalization" : {"fr": "Personnalisation Evénementielle", "en": "Event Personalization"},

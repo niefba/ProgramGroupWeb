@@ -25,5 +25,14 @@ programGroupControllers.controller('DashboardCtrl', ['$scope', '$routeParams', '
       });
 
     }
+
+    $scope.closeTemplate = function () {
+      $scope.template = '';
+    }
+    
+    $scope.editTransaction = function () {
+      console.log('editTransaction');
+      $scope.template = '/partials/form-transaction.html';
+    }
   }]);
 
