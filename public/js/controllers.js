@@ -34,5 +34,21 @@ programGroupControllers.controller('DashboardCtrl', ['$scope', '$routeParams', '
       console.log('editTransaction');
       $scope.template = '/partials/form-transaction.html';
     }
+
+    $scope.saveTransaction = function (transaction) {
+      $http({
+        url: '/saveTransaction',
+        method: "POST",
+        data: {transaction: transaction},
+      }).
+      error(function(data, status, headers, config) {
+        $scope.errorMessage = 'Translation error';
+      }).
+      success(function(data, status, headers, config) {
+        $scope.successMessage = 'Translation saved';
+      });
+
+      $scope.closeTemplate();
+    }
   }]);
 

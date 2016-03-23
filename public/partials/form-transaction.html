@@ -11,7 +11,7 @@
         
         <div class="modal-body">
           
-          <form class="form-horizontal">
+          <form name="formTransaction" class="form-horizontal">
             <div class="form-group">
               <label for="chiefOfVillage" class="col-sm-5 control-label">{{ label.chiefOfVillage | translate:lang }}</label>
               <div class="col-sm-7">
@@ -88,14 +88,14 @@
             <div class="form-group">
               <label for="dateFrom" class="col-sm-5 control-label">{{ label.dateFrom | translate:lang }}</label>
               <div class="col-sm-7">
-                <input type="text" class="form-control" id="dateFrom" ng-model="data.dateFrom" placeholder="{{ label.dateFrom | translate:lang }}">
+                <input type="text" class="form-control" name="dateFrom" id="dateFrom" ng-model="data.dateFrom | date: 'yyyy-MM-dd'" placeholder="yyyy-MM-dd">
               </div>
             </div>
 
             <div class="form-group">
               <label for="dateTo" class="col-sm-5 control-label">{{ label.dateTo | translate:lang }}</label>
               <div class="col-sm-7">
-                <input type="text" class="form-control" id="dateTo" ng-model="data.dateTo" placeholder="{{ label.dateTo | translate:lang }}">
+                <input type="text" class="form-control" name="dateTo" id="dateTo" ng-model="data.dateTo | date: 'yyyy-MM-dd'" placeholder="yyyy-MM-dd">
               </div>
             </div>
 
@@ -111,7 +111,7 @@
         
         <div class="modal-footer">
           <button type="button" class="btn btn-default" ng-click="closeTemplate()">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary" ng-click="saveTransaction(data)">Save changes</button>
         </div>
 
       </div>

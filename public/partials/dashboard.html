@@ -4,6 +4,16 @@
     {{ data.error }}
   </div>
   
+  <div class="alert alert-success" ng-show="successMessage">
+    <strong>Success!</strong>
+    {{ successMessage }}
+  </div>
+
+  <div class="alert alert-danger" ng-show="errorMessage">
+    <strong>Error!</strong>
+    {{ errorMessage }}
+  </div>
+
   <div class="col-md-5" ng-hide="data.error">
     <h2>
       {{ label.transactionNumber | translate:lang }} {{ data.transactionNumber | translate:lang }}
@@ -25,9 +35,12 @@
       <dt ng-show="data.aimOfMeeting">{{ label.aimOfMeeting | translate:lang }}</dt><dd>{{ data.aimOfMeeting }}</dd>
       <dt ng-show="data.leader">{{ label.leader | translate:lang }}</dt><dd>{{ data.leader }}</dd>
       <dt ng-show="data.leaderFunction">{{ label.leaderFunction | translate:lang }}</dt><dd>{{ data.leaderFunction }}</dd>
-    	<dt ng-show="data.dateFrom">{{ label.dates | translate:lang }}</dt><dd ng-show="data.dateFrom">{{ label.from | translate:lang }} {{ data.dateFrom }} {{ label.to | translate:lang }} {{ data.dateTo }}</dd>
-    	<dt ng-show="data.nbPaxRealNa">{{ label.numbreOfPeople | translate:lang }}</dt><dd>{{ data.nbPaxRealNa }}</dd>
-      <dt ng-show="data.nbPaxInit">{{ label.numbreOfPeople | translate:lang }}</dt><dd>{{ data.nbPaxInit }}</dd>
+    	<dt ng-show="data.dateFrom">{{ label.dates | translate:lang }}</dt>
+      <dd ng-show="data.dateFrom">{{ label.from | translate:lang }} {{ data.dateFrom | date: 'yyyy-MM-dd' }} {{ label.to | translate:lang }} {{ data.dateTo | date: 'yyyy-MM-dd' }}</dd>
+    	<dt ng-show="data.nbPaxRealNa">{{ label.numbreOfPeople | translate:lang }}</dt>
+      <dd ng-show="data.nbPaxRealNa">{{ data.nbPaxRealNa }}</dd>
+      <dt ng-show="data.nbPaxInit">{{ label.numbreOfPeople | translate:lang }}</dt>
+      <dd ng-show="data.nbPaxInit">{{ data.nbPaxInit }}</dd>
     </dl>
   </div>
 

@@ -9,7 +9,7 @@ var express = require('express')
   , jwt = require('jwt-simple');
 
 var config = require('./config');
-
+var Transaction = require('./modules/transaction.js');
 // Start server
 server.listen(config.server.port, function(){
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
@@ -30,7 +30,7 @@ app.use('/img', express.static(__dirname + '/public/img'));
 app.use('/js', express.static(__dirname + '/public/js'));
 app.use('/partials', express.static(__dirname + '/public/partials'));
 
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE0NTg1OTk5OTMsImlhdCI6MTQ1ODU5OTk5MywiZXhwIjoxNDU4Njg2MzkzLCJ0cmFuc2FjdGlvbk51bWJlciI6IjIyMTExNyIsInJlc29ydCI6IkNsdWIgTWVkIFR3byIsInNhbGVQZXJzb24iOiJOYXRoYWxpZSBMRU1BSVJFLVNUUk9VQkFOVEUiLCJldmVudE1hbmFnZXIiOiJTYW1pYSBTTk9VU1NJIiwiZXhlY3V0aXZlUGVyc29uIjoiIiwiY29tcGFueSI6IlRPVEFMIExVQlJJRklBTlRTIiwiZGF0ZUZyb20iOiIxMy8xMS8yMDE1IiwiZGF0ZVRvIjoiMjEvMTEvMjAxNSIsIm5iUGF4SW5pdCI6IjMwMSIsIm5iUGF4UmVhbE5hIjoiIn0.ZHFg0nhBzEMJXkZiInROtqHtN9KWyx6PU8Tlaf8vmNs
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE0NTg2MDA4NzksImlhdCI6MTQ1ODYwMDg3OSwiZXhwIjoxNDU4Njg3Mjc5LCJ0cmFuc2FjdGlvbk51bWJlciI6IjIyMTExNyIsInJlc29ydCI6IkNsdWIgTWVkIFR3byIsInNhbGVQZXJzb24iOiJOYXRoYWxpZSBMRU1BSVJFLVNUUk9VQkFOVEUiLCJldmVudE1hbmFnZXIiOiJTYW1pYSBTTk9VU1NJIiwiZXhlY3V0aXZlUGVyc29uIjoiIiwiY29tcGFueSI6IlRPVEFMIExVQlJJRklBTlRTIiwiZGF0ZUZyb20iOiIxMy8xMS8yMDE1IiwiZGF0ZVRvIjoiMjEvMTEvMjAxNSIsIm5iUGF4SW5pdCI6MzAxLCJuYlBheFJlYWxOYSI6IiJ9.2pjhBSLtDu8vtp-bEgZLih4KxgtmN0ekJSbL-TH1Ass
 app.get('/token/:key', function(req, res, next) {
   // Handle the get for this route
   res.sendFile(__dirname + '/public/index.html');
@@ -40,7 +40,44 @@ app.get('/data', function(req, res){
   try {
     // Decode the json from an encoded string with double quote
     var data = require('jwt-simple').decode(req.query.token, config.app.secret, "HS256");
-    res.status(200).json(data);
+    if (data.transactionNumber) {
+      Transaction.findByNumber(data.transactionNumber, function(err, transactions) {
+        if (err) {
+          return console.error(err);
+        }
+        // New transaction
+        console.dir(data.dateTo);
+        var dateToArray = data.dateTo.split('/')
+        data.dateTo = new Date(dateToArray[2], dateToArray[1], dateToArray[0]);
+        var dateFromArray = data.dateFrom.split('/')
+        data.dateFrom = new Date(dateFromArray[2], dateFromArray[1], dateFromArray[0]);
+        if (transactions.length == 0) {
+          console.log('New transaction');
+          var transaction = new Transaction({
+            number: data.transactionNumber,
+            resort: data.resort,
+            salePerson: data.salePerson,
+            eventManager: data.eventManager,
+            executivePerson: data.executivePerson,
+            company: data.company,
+            dateFrom: data.dateFrom,
+            dateTo: data.dateTo,
+            nbPaxInit: Number(data.nbPaxInit),
+            nbPaxRealNa: Number(data.nbPaxRealNa)
+          });
+          transaction.save(function(err) {
+            if (err) return console.error(err);
+            res.status(200).json(transaction);
+          });
+        }
+        else {
+          console.log('Existing transaction');
+          console.dir(transactions);
+          res.status(200).json(transactions[0]);
+        }
+        //console.log(transaction);
+      })
+    }
   }
   catch (err) {
     res.status(403).json({ error: 'Invalid token'});
@@ -54,7 +91,17 @@ app.post('/', function (req, res) {
   res.status(200).send(token);
 });
 */
-
+app.post('/saveTransaction', function (req, res) {
+  console.dir(req.body);
+  if (req.body.transaction) {
+    var transaction = new Transaction(req.body.transaction);
+    transaction.update(function(err) {
+      if (err) return res.status(500).send();
+      return res.status(200).send();
+    });
+  }
+  else return res.status(500).send();
+});
 
 
 
