@@ -5,18 +5,20 @@
   </div>
   
   <div class="alert alert-success" ng-show="successMessage">
+    <button type="button" class="close" ng-click="successMessage = ''"><span>&times;</span></button>
     <strong>Success!</strong>
     {{ successMessage }}
   </div>
 
   <div class="alert alert-danger" ng-show="errorMessage">
+    <button type="button" class="close" ng-click="successError = ''"><span>&times;</span></button>
     <strong>Error!</strong>
     {{ errorMessage }}
   </div>
 
   <div class="col-md-5" ng-hide="data.error">
     <h2>
-      {{ label.transactionNumber | translate:lang }} {{ data.transactionNumber | translate:lang }}
+      {{ label.transactionNumber | translate:lang }} {{ data.number | translate:lang }}
       <button type="button" class="btn btn-primary pull-right" ng-click="editTransaction()">
         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
         {{ label.edit | translate:lang }}

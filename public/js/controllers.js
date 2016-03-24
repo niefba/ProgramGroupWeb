@@ -31,7 +31,9 @@ programGroupControllers.controller('DashboardCtrl', ['$scope', '$routeParams', '
     }
     
     $scope.editTransaction = function () {
-      console.log('editTransaction');
+      $scope.transaction = angular.copy($scope.data);
+      $scope.transaction.dateFrom = new Date($scope.transaction.dateFrom);
+      $scope.transaction.dateTo = new Date($scope.transaction.dateTo);
       $scope.template = '/partials/form-transaction.html';
     }
 
@@ -45,7 +47,8 @@ programGroupControllers.controller('DashboardCtrl', ['$scope', '$routeParams', '
         $scope.errorMessage = 'Translation error';
       }).
       success(function(data, status, headers, config) {
-        $scope.successMessage = 'Translation saved';
+        //$scope.successMessage = 'Translation saved';
+        $scope.data = $scope.transaction;
       });
 
       $scope.closeTemplate();

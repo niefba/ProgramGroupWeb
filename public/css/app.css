@@ -4,6 +4,38 @@ body {
     padding-bottom: 30px;
 }
 
+.clickable {
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .modal {
   display: block;
+}
+
+/*
+|
+| Dropdown-menu for date picker
+|
+*/
+.date-picker ul.dropdown-menu li {
+    white-space: normal;
+}
+.date-picker ul.dropdown-menu {
+  width: 230px;
+  min-width: auto;
+}
+.date-picker ul.dropdown-menu li a {
+  display: inline-block;
+  padding: 0px 4px;
+  min-width: 32px;
+  text-align: center;
+}
+.date-picker ul.dropdown-menu li a.today {
+  background-color: #CCC;
+}  
+.date-picker ul.dropdown-menu li a.active {
+  color: #FFF;
+  text-decoration: none;
+  background-color: #222;
 }

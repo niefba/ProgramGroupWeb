@@ -1,0 +1,20 @@
+<div class="input-group-btn date-picker">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-calendar"></span></button>
+  <ul class="dropdown-menu dropdown-menu-right">
+    <li>
+      <i class="glyphicon glyphicon-chevron-left clickable" ng-click="previousYear($event)"></i>
+      {{ year }}
+      <i class="glyphicon glyphicon-chevron-right clickable" ng-click="nextYear($event);"></i>
+      <a href="javascript:void(0)" ng-click="today($event)">{{ label.today | translate:lang }}</a>
+      <i class="glyphicon glyphicon-chevron-left clickable" ng-click="previousMonth($event)"></i>
+      {{  label[month + 1] | translate:lang}}
+      <i class="glyphicon glyphicon-chevron-right clickable" ng-click="nextMonth($event)"></i>
+    </li>
+    <li role="separator" class="divider"></li>
+    <li>
+      <a href="javascript:void(0)" ng-repeat="day in days track by $index" ng-click="setDate($index + 1)" ng-class="{'active': isCurrentDay($index + 1), 'today': isToday($index + 1) }">
+        {{ $index + 1 }}
+      </a>
+    </li>
+  </ul>
+</div>
