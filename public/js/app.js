@@ -11,9 +11,17 @@ var programGroupApp = angular.module('programGroupApp', [
 programGroupApp.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
     $routeProvider.
+    when('/', {
+        templateUrl: 'partials/dashboard.html',
+        controller: 'AppCtrl'
+      }).
       when('/token/:key', {
         templateUrl: 'partials/dashboard.html',
-        controller: 'DashboardCtrl'
+        controller: 'AppCtrl'
+      }).
+      when('/service/:type', {
+        templateUrl: 'partials/service.html',
+        controller: 'ServiceCtrl'
       }).
       otherwise({
         redirectTo: '/'

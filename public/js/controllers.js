@@ -3,29 +3,16 @@
 /* Controllers */
 var programGroupControllers = angular.module('programGroupControllers', []);
 
-programGroupControllers.controller('AppCtrl', ['$scope', '$filter', 'Translation',
-  function ($scope, $filter, Translation) {
+programGroupControllers.controller('AppCtrl', ['$scope', '$filter',  '$routeParams', '$http', 'Transaction', 'Translation',
+  function ($scope, $filter, $routeParams, $http, Transaction, Translation) {
+
+    if ($routeParams.key) {
+      Transaction.init($routeParams.key);
+    }
+    $scope.data = Transaction.getTransaction();
     $scope.msg = Translation.getMsg();
     $scope.ref = Translation.getRef();
     $scope.lang = 'fr';
-  }]);
-
-programGroupControllers.controller('DashboardCtrl', ['$scope', '$routeParams', '$http',
-  function ($scope, $routeParams, $http) {
-    if ($routeParams.key) {
-      $http({
-        url: '/data',
-        method: "GET",
-        params: {token: $routeParams.key},
-      }).
-      error(function(data, status, headers, config) {
-        $scope.data = data;
-      }).
-      success(function(data, status, headers, config) {
-        $scope.data = data;
-      });
-
-    }
 
     $scope.closeTemplate = function () {
       $scope.template = '';
@@ -65,7 +52,6 @@ programGroupControllers.controller('DashboardCtrl', ['$scope', '$routeParams', '
         $scope.errorMessage = 'Translation error';
       }).
       success(function(data, status, headers, config) {
-        //$scope.successMessage = 'Translation saved';
         $scope.data = $scope.transaction;
       });
 
@@ -73,3 +59,8 @@ programGroupControllers.controller('DashboardCtrl', ['$scope', '$routeParams', '
     }
   }]);
 
+programGroupControllers.controller('ServiceCtrl', ['$scope', '$routeParams', '$http',
+  function ($scope, $routeParams, $http) {
+    $scope.type = $routeParams.type
+  }
+]);

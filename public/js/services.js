@@ -4,6 +4,35 @@
 
 angular.module('app.services', [], function($provide) {
 
+   /**
+   * Transaction
+   */
+  $provide.factory('Transaction', ['$rootScope', '$http', '$location', function($rootScope, $http, $location) {
+      var transaction = {};
+
+      var TransactionFactory = {
+         init : function (key) {
+            $http({
+              url: '/data',
+              method: "GET",
+              params: {token: key},
+            }).
+            error(function(data, status, headers, config) {
+               console.log(data);
+            }).
+            success(function(data, status, headers, config) {
+              transaction = data;
+              $location.path('/');
+            });
+         },
+         getTransaction : function () {
+           return transaction;
+         },
+       }
+       return TransactionFactory;
+  }]),
+
+  
   /**
    * Translation
    */
