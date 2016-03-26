@@ -8,8 +8,29 @@ angular.module('app.services', [], function($provide) {
    * Translation
    */
   $provide.factory('Translation', ['$rootScope', function($rootScope) {
-    
-    var label = {
+    var ref = {
+      "companyActivity" : [
+         {"fr": "Agence de voyage", "en": "Travel agency"},
+         {"fr": "Industrie", "en": "Industry"},
+      ],
+      "aimOfMeeting" :  [
+         {"fr": "Challenge", "en": "Challenge"},
+         {"fr": "Détente", "en": "Relaxation"},
+         {"fr": "Séminaire de travail", "en": "Seminar work"},
+         {"fr": "Récompense", "en": "Reward"},
+         {"fr": "Fédérer les équipes", "en": "Unite teams"},
+         {"fr": "Voyage clients", "en": "Customers travel"},
+         {"fr": "Lancement de produit", "en": "Product launch"},
+         {"fr": "Convention", "en": "Convention"},
+         {"fr": "Formation", "en": "Training"},
+         {"fr": "Team building", "en": "Team building"},
+      ],
+      "leaderFunction" : [
+         {"fr": "Directeur", "en": "CEO"},
+         {"fr": "Manager", "en": "Manager"},
+      ],
+    }
+    var msg = {
       "1"  : {"fr": "Jan.", "en": "Jan."},
       "2"  : {"fr": "Fév.", "en": "Feb."},
       "3"  : {"fr": "Mars", "en": "Mar."},
@@ -22,6 +43,8 @@ angular.module('app.services', [], function($provide) {
       "10" : {"fr": "Oct.", "en": "Oct."},
       "11" : {"fr": "Nov.", "en": "Nov."},
       "12" : {"fr": "Déc.", "en": "Dec."},
+      "save" : {"fr": "Sauvegarder", "en": "Save changes"},
+      "close" : {"fr": "Fermer", "en": "Close"},
       "formatDate" : {"fr": "aaaa-mm-jj", "en": "yyyy-mm-dd"},
       "today"                 : {"fr": "Aujourd'hui", "en": "Today"},
       "home"                 : {"fr": "Accueil", "en": "Home"},
@@ -45,7 +68,7 @@ angular.module('app.services', [], function($provide) {
       "remarks"              : {"fr": "Observations", "en": "Remarks"},
       "companyActivity"      : {"fr": "Activité de la société", "en": "Company activity sector"},
       "aimOfMeeting"         : {"fr": "Objectif de cette réunion", "en": "Aim of the meeting"},
-      "leader"               : {"fr": "Nom du responsable", "en": "Name of group leader"},
+      "leaderName"           : {"fr": "Nom du responsable", "en": "Name of group leader"},
       "leaderFunction"       : {"fr": "Fonction du responsable", "en": "Function of group leader"},
       "dates"                : {"fr": "Dates de séjour", "en": "Dates"},
       "dateFrom"             : {"fr": "Arrivée", "en": "Arrival"},
@@ -95,8 +118,11 @@ angular.module('app.services', [], function($provide) {
 
 
     var TranslationFactory = {
-      getLabel : function () {
-        return label;
+      getMsg : function () {
+        return msg;
+      },
+      getRef : function () {
+        return ref;
       },
     }
     return TranslationFactory;

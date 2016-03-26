@@ -23,14 +23,14 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">{{ label.home | translate:lang }}</a></li>
+          <li class="active"><a href="#">{{ msg.home | translate:lang }}</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ label.language | translate:lang }} <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ msg.language | translate:lang }} <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li ng-class="{'active': lang == 'fr'}"><a href="#" ng-click="lang='fr'">{{ label.french | translate:lang }}</a></li>
-              <li ng-class="{'active': lang == 'en'}"><a href="#" ng-click="lang='en'">{{ label.english | translate:lang }}</a></li>
+              <li ng-class="{'active': lang == 'fr'}"><a href="#" ng-click="lang='fr'">{{ msg.french | translate:lang }}</a></li>
+              <li ng-class="{'active': lang == 'en'}"><a href="#" ng-click="lang='en'">{{ msg.english | translate:lang }}</a></li>
             </ul>
           </li>
         </ul>

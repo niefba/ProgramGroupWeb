@@ -21,12 +21,10 @@ var Transaction = ottoman.model('Transaction', {
   remarks: 'string',
   companyActivity: 'string',
   aimOfMeeting: 'string',
-  /*
   leaders: [{
     leaderName: 'string',
-    leaderFunction: ['string']
+    leaderFunction: 'string'
   }]
-  */
 }, {
   index: {
     findByNumber: {

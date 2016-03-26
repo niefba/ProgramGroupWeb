@@ -5,9 +5,9 @@
       <i class="glyphicon glyphicon-chevron-left clickable" ng-click="previousYear($event)"></i>
       {{ year }}
       <i class="glyphicon glyphicon-chevron-right clickable" ng-click="nextYear($event);"></i>
-      <a href="javascript:void(0)" ng-click="today($event)">{{ label.today | translate:lang }}</a>
+      <a href="javascript:void(0)" ng-click="today($event)">{{ msg.today | translate:lang }}</a>
       <i class="glyphicon glyphicon-chevron-left clickable" ng-click="previousMonth($event)"></i>
-      {{  label[month + 1] | translate:lang}}
+      {{  msg[month + 1] | translate:lang}}
       <i class="glyphicon glyphicon-chevron-right clickable" ng-click="nextMonth($event)"></i>
     </li>
     <li role="separator" class="divider"></li>

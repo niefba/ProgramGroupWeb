@@ -6,109 +6,149 @@
 
         <div class="modal-header">
           <button type="button" class="close" ng-click="closeTemplate()"><span>&times;</span></button>
-          <h4 class="modal-title">{{ label.transactionNumber | translate:lang }} {{ transaction.number | translate:lang }}</h4>
+          <h4 class="modal-title">{{ msg.transactionNumber | translate:lang }} {{ transaction.number | translate:lang }}</h4>
         </div>
         
         <div class="modal-body">
           
           <form name="formTransaction" class="form-horizontal">
             <div class="form-group">
-              <label for="chiefOfVillage" class="col-sm-5 control-label">{{ label.chiefOfVillage | translate:lang }}</label>
+              <label for="chiefOfVillage" class="col-sm-5 control-label">{{ msg.chiefOfVillage | translate:lang }}</label>
               <div class="col-sm-7">
-                <input type="text" class="form-control" name="chiefOfVillage" ng-model="transaction.chiefOfVillage" placeholder="{{ label.chiefOfVillage | translate:lang }}">
+                <input type="text" class="form-control" name="chiefOfVillage" ng-model="transaction.chiefOfVillage" placeholder="{{ msg.chiefOfVillage | translate:lang }}">
               </div>
             </div>
             <div class="form-group">
-              <label for="resortManager" class="col-sm-5 control-label">{{ label.resortManager | translate:lang }}</label>
+              <label for="resortManager" class="col-sm-5 control-label">{{ msg.resortManager | translate:lang }}</label>
               <div class="col-sm-7">
-                <input type="text" class="form-control" name="resortManager" ng-model="transaction.resortManager" placeholder="{{ label.resortManager | translate:lang }}">
+                <input type="text" class="form-control" name="resortManager" ng-model="transaction.resortManager" placeholder="{{ msg.resortManager | translate:lang }}">
               </div>
             </div>
             <div class="form-group">
-              <label for="resort" class="col-sm-5 control-label">{{ label.resort | translate:lang }}</label>
+              <label for="resort" class="col-sm-5 control-label">{{ msg.resort | translate:lang }}</label>
               <div class="col-sm-7">
-                <input type="text" class="form-control" name="resort" ng-model="transaction.resort" placeholder="{{ label.resort | translate:lang }}">
+                <input type="text" class="form-control" name="resort" ng-model="transaction.resort" placeholder="{{ msg.resort | translate:lang }}">
               </div>
             </div>
             <!--div class="form-group">
-              <label for="salePerson" class="col-sm-5 control-label">{{ label.salePerson | translate:lang }}</label>
+              <label for="salePerson" class="col-sm-5 control-label">{{ msg.salePerson | translate:lang }}</label>
               <div class="col-sm-7">
-                <input type="text" class="form-control" name="salePerson" ng-model="transaction.salePerson" placeholder="{{ label.salePerson | translate:lang }}" readonly>
+                <input type="text" class="form-control" name="salePerson" ng-model="transaction.salePerson" placeholder="{{ msg.salePerson | translate:lang }}" readonly>
               </div>
             </div>
             <div class="form-group">
-              <label for="executivePerson" class="col-sm-5 control-label">{{ label.executivePerson | translate:lang }}</label>
+              <label for="executivePerson" class="col-sm-5 control-label">{{ msg.executivePerson | translate:lang }}</label>
               <div class="col-sm-7">
-                <input type="text" class="form-control" name="executivePerson" ng-model="transaction.executivePerson" placeholder="{{ label.executivePerson | translate:lang }}" readonly>
+                <input type="text" class="form-control" name="executivePerson" ng-model="transaction.executivePerson" placeholder="{{ msg.executivePerson | translate:lang }}" readonly>
               </div>
             </div>
             <div class="form-group">
-              <label for="eventManager" class="col-sm-5 control-label">{{ label.eventManager | translate:lang }}</label>
+              <label for="eventManager" class="col-sm-5 control-label">{{ msg.eventManager | translate:lang }}</label>
               <div class="col-sm-7">
-                <input type="text" class="form-control" name="eventManager" ng-model="transaction.eventManager" placeholder="{{ label.eventManager | translate:lang }}" readonly>
+                <input type="text" class="form-control" name="eventManager" ng-model="transaction.eventManager" placeholder="{{ msg.eventManager | translate:lang }}" readonly>
               </div>
             </div-->
             <div class="form-group">
-              <label for="company" class="col-sm-5 control-label">{{ label.company | translate:lang }}</label>
+              <label for="company" class="col-sm-5 control-label">{{ msg.company | translate:lang }}</label>
               <div class="col-sm-7">
-                <input type="text" class="form-control" name="company" ng-model="transaction.company" placeholder="{{ label.company | translate:lang }}">
+                <input type="text" class="form-control" name="company" ng-model="transaction.company" placeholder="{{ msg.company | translate:lang }}">
               </div>
             </div>
             <div class="form-group">
-              <label for="remarks" class="col-sm-5 control-label">{{ label.remarks | translate:lang }}</label>
+              <label for="remarks" class="col-sm-5 control-label">{{ msg.remarks | translate:lang }}</label>
               <div class="col-sm-7">
-                <input type="text" class="form-control" name="remarks" ng-model="transaction.remarks" placeholder="{{ label.remarks | translate:lang }}">
+                <input type="text" class="form-control" name="remarks" ng-model="transaction.remarks" placeholder="{{ msg.remarks | translate:lang }}">
               </div>
             </div>
             <div class="form-group">
-              <label for="companyActivity" class="col-sm-5 control-label">{{ label.companyActivity | translate:lang }}</label>
+              <label for="companyActivity" class="col-sm-5 control-label">{{ msg.companyActivity | translate:lang }}</label>
               <div class="col-sm-7">
-                <input type="text" class="form-control" name="companyActivity" ng-model="transaction.companyActivity" placeholder="{{ label.companyActivity | translate:lang }}">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="companyActivity" ng-model="transaction.companyActivity" placeholder="{{ msg.companyActivity | translate:lang }}">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-chevron-down"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                      <li ng-repeat="reference in ref.companyActivity">
+                        <a href="#" ng-click="transaction.companyActivity = reference[lang]">{{ reference | translate:lang }}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div><!-- /input-group -->
               </div>
             </div>
             <div class="form-group">
-              <label for="aimOfMeeting" class="col-sm-5 control-label">{{ label.aimOfMeeting | translate:lang }}</label>
+              <label for="aimOfMeeting" class="col-sm-5 control-label">{{ msg.aimOfMeeting | translate:lang }}</label>
               <div class="col-sm-7">
-                <input type="text" class="form-control" name="aimOfMeeting" ng-model="transaction.aimOfMeeting" placeholder="{{ label.aimOfMeeting | translate:lang }}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="leader" class="col-sm-5 control-label">{{ label.leader | translate:lang }}</label>
-              <div class="col-sm-7">
-                <input type="text" class="form-control" name="leader" ng-model="transaction.leader" placeholder="{{ label.leader | translate:lang }}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="leaderFunction" class="col-sm-5 control-label">{{ label.leaderFunction | translate:lang }}</label>
-              <div class="col-sm-7">
-                <input type="text" class="form-control" name="leaderFunction" ng-model="transaction.leaderFunction" placeholder="{{ label.leaderFunction | translate:lang }}">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="aimOfMeeting" ng-model="transaction.aimOfMeeting" placeholder="{{ msg.aimOfMeeting | translate:lang }}">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-chevron-down"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                      <li ng-repeat="reference in ref.aimOfMeeting">
+                        <a href="#" ng-click="transaction.aimOfMeeting = reference[lang]">{{ reference | translate:lang }}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div><!-- /input-group -->
               </div>
             </div>
 
+            <!-- Leaders -->
+            <div  ng-repeat="leader in transaction.leaders">
+              <div class="form-group"  ng-class="{'has-error': formTransaction.leaderName{{$index}}.$invalid}">
+                <label for="leaderName" class="col-sm-5 control-label">{{ msg.leaderName | translate:lang }}</label>
+                <div class="col-sm-7">
+                  <div class="input-group">
+                    <input type="text" class="form-control" name="leaderName{{$index}}" ng-model="leader.leaderName" placeholder="{{ msg.leaderName | translate:lang }}" ng-required="leader.leaderFunction">
+                    <span class="input-group-btn">
+                      <button ng-show="$first" class="btn btn-default" type="button" ng-click="addLeader()" ng-disabled="transaction.leaders.length > 4"><span class="glyphicon glyphicon-plus"></span></button>
+                      <button ng-hide="$first" class="btn btn-default" type="button" ng-click="removeLeader($index)"><span class="glyphicon glyphicon-remove"></span></button>
+                    </span>
+                  </div><!-- /input-group -->
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="leaderFunction" class="col-sm-5 control-label">{{ msg.leaderFunction | translate:lang }}</label>
+                <div class="col-sm-7">
+                  <div class="input-group">
+                  <input type="text" class="form-control" name="leaderFunction" ng-model="leader.leaderFunction" placeholder="{{ msg.leaderFunction | translate:lang }}">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-chevron-down"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                      <li ng-repeat="reference in ref.leaderFunction">
+                        <a href="#" ng-click="leader.leaderFunction = reference[lang]">{{ reference | translate:lang }}</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div><!-- /input-group -->
+                </div>
+              </div>
+            </div><!-- Leaders -->
+
             <div class="form-group" ng-class="{'has-error': formTransaction.dateFrom.$invalid}">
-              <label for="dateFrom" class="col-sm-5 control-label">{{ label.dateFrom | translate:lang }}</label>
+              <label for="dateFrom" class="col-sm-5 control-label">{{ msg.dateFrom | translate:lang }}</label>
               <div class="col-sm-7">
                 <div class="input-group">
-                  <input type="date" class="form-control" name="dateFrom" ng-model="transaction.dateFrom" placeholder="{{ label.formatDate | translate:lang }}" required>
-                  <div data-date-picker data-model="transaction.dateFrom" data-lang="{{ lang }}" data-label="label"></div>
+                  <input type="date" class="form-control" name="dateFrom" ng-model="transaction.dateFrom" placeholder="{{ msg.formatDate | translate:lang }}" required>
+                  <div data-date-picker data-model="transaction.dateFrom" data-lang="{{ lang }}" data-msg="msg"></div>
                 </div>
               </div>
             </div>
 
             <div class="form-group"  ng-class="{'has-error': formTransaction.dateTo.$invalid}">
-              <label for="dateTo" class="col-sm-5 control-label">{{ label.dateTo | translate:lang }}</label>
+              <label for="dateTo" class="col-sm-5 control-label">{{ msg.dateTo | translate:lang }}</label>
               <div class="col-sm-7">
                 <div class="input-group">
-                  <input type="date" class="form-control" name="dateTo" ng-model="transaction.dateTo" placeholder="{{ label.formatDate | translate:lang }}" required>
-                  <div data-date-picker data-model="transaction.dateTo" data-lang="{{ lang }}" data-label="label"></div>
+                  <input type="date" class="form-control" name="dateTo" ng-model="transaction.dateTo" placeholder="{{ msg.formatDate | translate:lang }}" required>
+                  <div data-date-picker data-model="transaction.dateTo" data-lang="{{ lang }}" data-msg="msg"></div>
                 </div>
               </div>
             </div>
 
             <div class="form-group"  ng-class="{'has-error': formTransaction.nbPaxInit.$invalid}">
-              <label for="nbPaxInit" class="col-sm-5 control-label">{{ label.numbreOfPeople | translate:lang }}</label>
+              <label for="nbPaxInit" class="col-sm-5 control-label">{{ msg.numbreOfPeople | translate:lang }}</label>
               <div class="col-sm-7">
-                <input type="number" class="form-control" name="nbPaxInit" ng-model="transaction.nbPaxInit" placeholder="{{ label.numbreOfPeople | translate:lang }}" ng-pattern="/^[0-9]*$/">
+                <input type="number" class="form-control" name="nbPaxInit" ng-model="transaction.nbPaxInit" placeholder="{{ msg.numbreOfPeople | translate:lang }}" ng-pattern="/^[0-9]*$/">
               </div>
             </div>
           </form>
@@ -116,8 +156,8 @@
         </div>
         
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" ng-click="closeTemplate()">Close</button>
-          <button type="button" class="btn btn-primary" ng-click="saveTransaction(transaction)" ng-disabled="formTransaction.$invalid">Save changes</button>
+          <button type="button" class="btn btn-default" ng-click="closeTemplate()">{{ msg.close | translate:lang }}</button>
+          <button type="button" class="btn btn-primary" ng-click="saveTransaction(transaction)" ng-disabled="formTransaction.$invalid">{{ msg.save | translate:lang }}</button>
         </div>
 
       </div>

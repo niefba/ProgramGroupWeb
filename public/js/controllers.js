@@ -5,7 +5,8 @@ var programGroupControllers = angular.module('programGroupControllers', []);
 
 programGroupControllers.controller('AppCtrl', ['$scope', '$filter', 'Translation',
   function ($scope, $filter, Translation) {
-    $scope.label = Translation.getLabel();
+    $scope.msg = Translation.getMsg();
+    $scope.ref = Translation.getRef();
     $scope.lang = 'fr';
   }]);
 
@@ -34,7 +35,24 @@ programGroupControllers.controller('DashboardCtrl', ['$scope', '$routeParams', '
       $scope.transaction = angular.copy($scope.data);
       $scope.transaction.dateFrom = new Date($scope.transaction.dateFrom);
       $scope.transaction.dateTo = new Date($scope.transaction.dateTo);
+      if (!$scope.transaction.leaders) {
+        $scope.transaction.leaders = [{
+          leaderName: '',
+          leaderFunction: ''
+        }];
+      }
       $scope.template = '/partials/form-transaction.html';
+    }
+
+    $scope.addLeader = function () {
+      $scope.transaction.leaders.push({
+          leaderName: '',
+          leaderFunction: ''
+        });
+    }
+
+    $scope.removeLeader = function (index) {
+      $scope.transaction.leaders.splice(index, 1);
     }
 
     $scope.saveTransaction = function (transaction) {

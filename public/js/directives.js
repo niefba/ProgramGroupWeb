@@ -8,8 +8,8 @@ angular.module('app.directives', []).
   * DatePicker
   * Usage:
   *    <div class="input-group">
-  *        <input type="date" class="form-control" id="dateFrom" ng-model="transaction.dateFrom" placeholder="{{ label.formatDate | translate:lang }}">
-  *        <div data-date-picker data-model="transaction.dateFrom" data-lang="{{ lang }}" data-label="label"></div>
+  *        <input type="date" class="form-control" id="dateFrom" ng-model="transaction.dateFrom" placeholder="{{ msg.formatDate | translate:lang }}">
+  *        <div data-date-picker data-model="transaction.dateFrom" data-lang="{{ lang }}" data-msg="msg"></div>
   *    </div> 
   */
   directive('datePicker', function() {
@@ -20,7 +20,7 @@ angular.module('app.directives', []).
       scope: { 
         selectedDate:'=model',
         lang:'@lang',
-        label:'=label',
+        msg:'=msg',
       },
       templateUrl: '/partials/date-picker.html',
 
