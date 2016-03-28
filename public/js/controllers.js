@@ -68,13 +68,14 @@ programGroupControllers.controller('ServiceCtrl', ['$scope', '$routeParams', 'fi
       for (var index in $scope.manager.transaction.services) {
         if ($scope.manager.transaction.services[index].delete) {
           $scope.manager.transaction.services.splice(index, 1);
+          return
         }
       }
       Manager.saveTransaction($scope.manager.transaction);
     }
 
     $scope.copyLine = function (line) {
-      $scope.manager.transaction.services.push(line);
+      $scope.manager.transaction.services.push(angular.copy(line));
       Manager.saveTransaction($scope.manager.transaction);
     }
 
