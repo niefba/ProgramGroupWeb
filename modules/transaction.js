@@ -24,7 +24,20 @@ var Transaction = ottoman.model('Transaction', {
   leaders: [{
     leaderName: 'string',
     leaderFunction: 'string'
-  }]
+  }],
+  services: [{
+    type: 'string',
+    date: 'Date',
+    name: 'string',
+    quantity: 'integer',
+    price: 'number',
+    payment: 'string',
+    comment: 'string'
+  }],
+  eventPersonalization: {
+    commentProduction: 'string',
+    commentResort: 'string'
+  }
 }, {
   index: {
     findByNumber: {

@@ -5,12 +5,28 @@
 angular.module('app.services', [], function($provide) {
 
    /**
-   * Transaction
+   * Manager
    */
-  $provide.factory('Transaction', ['$rootScope', '$http', '$location', function($rootScope, $http, $location) {
-      var transaction = {};
+  $provide.factory('Manager', ['$rootScope', '$http', '$location', function($rootScope, $http, $location) {
+      var manager = {};
 
-      var TransactionFactory = {
+      var ManagerFactory = {
+
+        saveTransaction : function (transaction) {
+          $http({
+            url: '/saveTransaction',
+            method: "POST",
+            data: {transaction: transaction},
+          }).
+          error(function(data, status, headers, config) {
+            //$scope.errorMessage = 'Translation error';
+          }).
+          success(function(data, status, headers, config) {
+            manager.transaction = transaction;
+            //$scope.data = $scope.transaction;
+          });
+
+        },
          init : function (key) {
             $http({
               url: '/data',
@@ -21,15 +37,19 @@ angular.module('app.services', [], function($provide) {
                console.log(data);
             }).
             success(function(data, status, headers, config) {
-              transaction = data;
+              console.log(data);
+              manager.transaction = data;
+               if (!manager.transaction.eventPersonalization) {
+                manager.transaction.eventPersonalization = {commentProduction: '', commentResort: ''};
+              }
               $location.path('/');
             });
          },
-         getTransaction : function () {
-           return transaction;
+         get : function () {
+           return manager;
          },
        }
-       return TransactionFactory;
+       return ManagerFactory;
   }]),
 
   
@@ -74,6 +94,7 @@ angular.module('app.services', [], function($provide) {
       "12" : {"fr": "Déc.", "en": "Dec."},
       "save" : {"fr": "Sauvegarder", "en": "Save changes"},
       "close" : {"fr": "Fermer", "en": "Close"},
+      "cancel" : {"fr": "Annuler", "en": "Cancel"},
       "formatDate" : {"fr": "aaaa-mm-jj", "en": "yyyy-mm-dd"},
       "today"                 : {"fr": "Aujourd'hui", "en": "Today"},
       "home"                 : {"fr": "Accueil", "en": "Home"},
@@ -86,6 +107,22 @@ angular.module('app.services', [], function($provide) {
       "language"            : {"fr": "Langue", "en": "Language"},
       "french"                : {"fr": "Français", "en": "French"},
       "english"               : {"fr": "Anglais", "en": "English"},
+
+      "paymentClubmed"               : {"fr": "M&E", "en": "M&E"},
+      "paymentCustomer"               : {"fr": "Client", "en": "Customer"},
+      "paymentResort"               : {"fr": "Village", "en": "Resort"},
+
+      "noLine"               : {"fr": "Aucune ligne.", "en": "No line."},
+      "noComment"               : {"fr": "Aucun commentaire.", "en": "No comment."},
+      "comment"               : {"fr": "Commentaire", "en": "M&E Comment"},
+      "commentProduction"               : {"fr": "Commentaires Production M&E", "en": "M&E Comments"},
+      "commentResort"               : {"fr": "Commentaires Village", "en": "Resort Comments"},
+      "addLine"                    : {"fr": "Ajouter une ligne", "en": "Add a line"},
+      "date"                    : {"fr": "Date", "en": "Date"},
+      "quantity"                    : {"fr": "Quantité", "en": "Quantity"},
+      "price"                    : {"fr": "Prix", "en": "Price"},
+      "prestation"                    : {"fr": "Prestation", "en": "Prestation"},
+      "payment"                    : {"fr": "Paiement", "en": "Payment"},
 
       // Informations
       "chiefOfVillage"       : {"fr": "Nom du Chef de Village", "en": "Chief of Village"},

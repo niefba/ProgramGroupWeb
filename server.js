@@ -63,7 +63,9 @@ app.get('/data', function(req, res){
             dateFrom: data.dateFrom,
             dateTo: data.dateTo,
             nbPaxInit: Number(data.nbPaxInit),
-            nbPaxRealNa: Number(data.nbPaxRealNa)
+            nbPaxRealNa: Number(data.nbPaxRealNa),
+            services: [],
+            comments: []
           });
           transaction.save(function(err) {
             if (err) return console.error(err);

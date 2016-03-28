@@ -3,13 +3,14 @@
 /* Controllers */
 var programGroupControllers = angular.module('programGroupControllers', []);
 
-programGroupControllers.controller('AppCtrl', ['$scope', '$filter',  '$routeParams', '$http', 'Transaction', 'Translation',
-  function ($scope, $filter, $routeParams, $http, Transaction, Translation) {
+programGroupControllers.controller('AppCtrl', ['$scope', '$filter',  '$routeParams', 'Manager', 'Translation', '$location',
+  function ($scope, $filter, $routeParams, Manager, Translation, $location) {
 
     if ($routeParams.key) {
-      Transaction.init($routeParams.key);
+      Manager.init($routeParams.key);
     }
-    $scope.data = Transaction.getTransaction();
+    $scope.manager = Manager.get();
+    $scope.location = $location;
     $scope.msg = Translation.getMsg();
     $scope.ref = Translation.getRef();
     $scope.lang = 'fr';
@@ -19,7 +20,7 @@ programGroupControllers.controller('AppCtrl', ['$scope', '$filter',  '$routePara
     }
     
     $scope.editTransaction = function () {
-      $scope.transaction = angular.copy($scope.data);
+      $scope.transaction = angular.copy($scope.manager.transaction);
       $scope.transaction.dateFrom = new Date($scope.transaction.dateFrom);
       $scope.transaction.dateTo = new Date($scope.transaction.dateTo);
       if (!$scope.transaction.leaders) {
@@ -43,24 +44,73 @@ programGroupControllers.controller('AppCtrl', ['$scope', '$filter',  '$routePara
     }
 
     $scope.saveTransaction = function (transaction) {
-      $http({
-        url: '/saveTransaction',
-        method: "POST",
-        data: {transaction: transaction},
-      }).
-      error(function(data, status, headers, config) {
-        $scope.errorMessage = 'Translation error';
-      }).
-      success(function(data, status, headers, config) {
-        $scope.data = $scope.transaction;
-      });
-
+      Manager.saveTransaction(transaction);
       $scope.closeTemplate();
     }
   }]);
 
-programGroupControllers.controller('ServiceCtrl', ['$scope', '$routeParams', '$http',
-  function ($scope, $routeParams, $http) {
-    $scope.type = $routeParams.type
+programGroupControllers.controller('ServiceCtrl', ['$scope', '$routeParams', 'filterFilter', 'Manager',
+  function ($scope, $routeParams, filterFilter, Manager) {
+    $scope.type = $routeParams.type;
+
+    $scope.closeTemplate = function () {
+      $scope.template = '';
+    }
+
+    $scope.addLine = function () {
+      $scope.newLine = true;
+      $scope.line = {type: $scope.type};
+      $scope.template = '/partials/form-service.html';
+    }
+
+    $scope.deleteLine = function (line) {
+      line.delete = true;
+      for (var index in $scope.manager.transaction.services) {
+        if ($scope.manager.transaction.services[index].delete) {
+          $scope.manager.transaction.services.splice(index, 1);
+        }
+      }
+      Manager.saveTransaction($scope.manager.transaction);
+    }
+
+    $scope.copyLine = function (line) {
+      $scope.manager.transaction.services.push(line);
+      Manager.saveTransaction($scope.manager.transaction);
+    }
+
+    $scope.editLine = function (line) {
+      $scope.newLine = false;
+      $scope.servicesCopy = angular.copy($scope.manager.transaction.services);
+      $scope.line = line;
+      $scope.line.date = new Date(line.date);
+      $scope.template = '/partials/form-service.html';
+    }
+
+    $scope.cancelLine = function () {
+      if (!$scope.newLine) {
+        $scope.manager.transaction.services = $scope.servicesCopy;
+      }
+      $scope.closeTemplate();
+    }
+
+    $scope.saveLine = function (line) {
+      if ($scope.newLine) {
+        $scope.manager.transaction.services.push(line);
+      }
+      Manager.saveTransaction($scope.manager.transaction);
+      $scope.closeTemplate();
+    }
+
+    $scope.editComment = function (commentFrom) {
+      $scope.commentFrom = commentFrom;
+      $scope.comment = $scope.manager.transaction[$scope.type][commentFrom];
+      $scope.template = '/partials/form-comment.html';
+    }
+
+    $scope.saveComment = function (comment) {
+      $scope.manager.transaction[$scope.type][$scope.commentFrom] = comment;
+      Manager.saveTransaction($scope.manager.transaction);
+      $scope.closeTemplate();
+    }
   }
 ]);

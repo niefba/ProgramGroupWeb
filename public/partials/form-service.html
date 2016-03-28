@@ -1,0 +1,76 @@
+<div>
+  <div class="modal-backdrop fade in"></div>
+  <div class="modal fade in">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" ng-click="cancelLine()"><span>&times;</span></button>
+          <h4 class="modal-title">{{ msg[type] | translate:lang }}</h4>
+        </div>
+        
+        <div class="modal-body">
+          
+          <form name="formLine" class="form-horizontal">
+
+            <div class="form-group" ng-class="{'has-error': formLine.date.$invalid}">
+              <label for="date" class="col-sm-4 control-label">{{ msg.date | translate:lang }}</label>
+              <div class="col-sm-8">
+                <div class="input-group">
+                  <input type="date" class="form-control" name="date" ng-model="line.date" placeholder="{{ msg.formatDate | translate:lang }}" required>
+                  <div data-date-picker data-model="line.date" data-lang="{{ lang }}" data-msg="msg"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="prestation" class="col-sm-4 control-label">{{ msg.prestation | translate:lang }}</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="prestation" ng-model="line.prestation" placeholder="{{ msg.prestation | translate:lang }}">
+              </div>
+            </div>
+
+            <div class="form-group"  ng-class="{'has-error': formLine.quantity.$invalid}">
+              <label for="quantity" class="col-sm-4 control-label">{{ msg.quantity | translate:lang }}</label>
+              <div class="col-sm-8">
+                <input type="number" class="form-control" name="quantity" ng-model="line.quantity" placeholder="{{ msg.quantity | translate:lang }}" ng-pattern="/^[0-9]*$/">
+              </div>
+            </div>
+
+            <div class="form-group"  ng-class="{'has-error': formLine.price.$invalid}">
+              <label for="price" class="col-sm-4 control-label">{{ msg.price | translate:lang }}</label>
+              <div class="col-sm-8">
+                <input type="number" class="form-control" name="price" ng-model="line.price" placeholder="{{ msg.price | translate:lang }}" ng-pattern="/^[0-9\.]*$/">
+              </div>
+            </div>
+
+            <div class="form-group"  ng-class="{'has-error': formLine.payment.$invalid}">
+              <label for="payment" class="col-sm-4 control-label">{{ msg.payment | translate:lang }}</label>
+              <div class="col-sm-8">
+                <select class="form-control" name="payment" ng-model="line.payment">
+                  <option>{{ msg.paymentClubmed | translate:lang }}</option>
+                  <option>{{ msg.paymentResort | translate:lang }}</option>
+                  <option>{{ msg.paymentCustomer | translate:lang }}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="comment" class="col-sm-4 control-label">{{ msg.comment | translate:lang }}</label>
+              <div class="col-sm-8">
+                <textarea class="form-control" rows="3" ng-model="line.comment"></textarea>
+              </div>
+            </div>
+          </form>
+
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" ng-click="cancelLine()">{{ msg.cancel | translate:lang }}</button>
+          <button type="button" class="btn btn-primary" ng-click="saveLine(line)" ng-disabled="formLine.$invalid">{{ msg.save | translate:lang }}</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
