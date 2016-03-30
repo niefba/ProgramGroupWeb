@@ -12,14 +12,14 @@
     {{ msg.noLine | translate:lang }}
   </div>
 
-  <table class="table table-hover" ng-show="(manager.transaction.services | filter:{type:type}).length">
+  <table class="table" ng-show="(manager.transaction.services | filter:{type:type}).length">
     <thead>
       <tr>
         <th>{{ msg.date | translate:lang }}</th>
         <th>{{ msg.prestation | translate:lang }}</th>
-        <th>{{ msg.quantity | translate:lang }}</th>
-        <th>{{ msg.price | translate:lang }}</th>
-        <th>{{ msg.payment | translate:lang }}</th>
+        <th class="text-right">{{ msg.quantity | translate:lang }}</th>
+        <th class="text-right">{{ msg.price | translate:lang }}</th>
+        <th class="text-center">{{ msg.payment | translate:lang }}</th>
         <th></th>
       </tr>
     </thead>
@@ -27,9 +27,9 @@
       <tr ng-repeat-start="line in manager.transaction.services | filter:{type:type} track by $index">
         <th scope="row">{{ line.date | date: 'yyyy-MM-dd' }}</th>
         <td>{{ line.prestation }}</td>
-        <td>{{ line.quantity }}</td>
-        <td>{{ line.price }}</td>
-        <td>{{ line.payment }}</td>
+        <td class="text-right">{{ line.quantity }}</td>
+        <td class="text-right">{{ line.price }} {{ devise }}</td>
+        <td class="text-center">{{ line.payment }}</td>
         <td>
           <div class="btn-group pull-right" role="group">
             <button type="button" class="btn btn-default btn-sm" ng-click="editLine(line)"><span class="glyphicon glyphicon-pencil"></span></button>
@@ -38,7 +38,12 @@
           </div>
         </td>
       </tr>
-      <tr ng-repeat-end ng-show="line.comment"><td></td><td colspan="5"><i>{{ line.comment }}</i></td></tr>
+      <tr ng-repeat-end ng-show="line.comment"><td></td><td colspan="5"><small><i>{{ line.comment }}</i></small></td></tr>
+      <tr class="bg-primary">
+        <td class="text-right" colspan="3"><strong>{{ msg.total | translate:lang }} {{ msg[type] | translate:lang }}:</strong></td>
+        <td class="text-right"><strong>{{total}} {{ devise }}</strong></td>
+        <td class="text-right" colspan="2"></td>
+      </tr>
     </tbody>
   </table>
 </div>
@@ -53,7 +58,7 @@
     </div>
     <div class="panel-body">
       <p ng-hide="manager.transaction[type].commentProduction">{{ msg.noComment | translate:lang }}</p>
-      <p ng-show="manager.transaction[type].commentProduction">{{ manager.transaction[type].commentProduction }}</p>
+      <i ng-show="manager.transaction[type].commentProduction">{{ manager.transaction[type].commentProduction }}</i>
     </div>
   </div>
 
@@ -66,7 +71,7 @@
     </div>
     <div class="panel-body">
       <p ng-hide="manager.transaction[type].commentResort">{{ msg.noComment | translate:lang }}</p>
-      <p ng-show="manager.transaction[type].commentResort">{{ manager.transaction[type].commentResort }}</p>
+      <i ng-show="manager.transaction[type].commentResort">{{ manager.transaction[type].commentResort }}</i>
     </div>
   </div>
 </div>

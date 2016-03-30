@@ -12,10 +12,9 @@
         <div class="modal-body">
           
           <form name="formComment" class="form-horizontal">
-
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error': formComment.comment.$invalid}">
               <div class="col-sm-12">
-                <textarea class="form-control" rows="3" ng-model="comment" placeholder="{{ msg[commentFrom] | translate:lang }}">{{ comment }}</textarea>
+                <textarea class="form-control" rows="9" name="comment" ng-maxlength="600" ng-model="comment" placeholder="{{ msg[commentFrom] | translate:lang }}">{{ comment }}</textarea>
               </div>
             </div>
           </form>

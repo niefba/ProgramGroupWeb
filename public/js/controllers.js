@@ -13,7 +13,7 @@ programGroupControllers.controller('AppCtrl', ['$scope', '$filter',  '$routePara
     $scope.location = $location;
     $scope.msg = Translation.getMsg();
     $scope.ref = Translation.getRef();
-    $scope.lang = 'fr';
+    $scope.devise = '€';
 
     $scope.closeTemplate = function () {
       $scope.template = '';
@@ -68,15 +68,17 @@ programGroupControllers.controller('ServiceCtrl', ['$scope', '$routeParams', 'fi
       for (var index in $scope.manager.transaction.services) {
         if ($scope.manager.transaction.services[index].delete) {
           $scope.manager.transaction.services.splice(index, 1);
-          return
+          break
         }
       }
       Manager.saveTransaction($scope.manager.transaction);
+      $scope.calculTotal();
     }
 
     $scope.copyLine = function (line) {
       $scope.manager.transaction.services.push(angular.copy(line));
       Manager.saveTransaction($scope.manager.transaction);
+      $scope.calculTotal();
     }
 
     $scope.editLine = function (line) {
@@ -99,6 +101,7 @@ programGroupControllers.controller('ServiceCtrl', ['$scope', '$routeParams', 'fi
         $scope.manager.transaction.services.push(line);
       }
       Manager.saveTransaction($scope.manager.transaction);
+      $scope.calculTotal();
       $scope.closeTemplate();
     }
 
@@ -113,5 +116,13 @@ programGroupControllers.controller('ServiceCtrl', ['$scope', '$routeParams', 'fi
       Manager.saveTransaction($scope.manager.transaction);
       $scope.closeTemplate();
     }
+
+    $scope.calculTotal = function () {
+      $scope.total = 0;
+      angular.forEach(filterFilter($scope.manager.transaction.services, {type:$scope.type}), function(value, key) {
+        $scope.total += (value.price * value.quantity);
+      });
+    }
+    $scope.calculTotal();
   }
 ]);

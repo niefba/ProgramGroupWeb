@@ -98,6 +98,8 @@ angular.module('app.services', [], function($provide) {
       "formatDate" : {"fr": "aaaa-mm-jj", "en": "yyyy-mm-dd"},
       "today"                 : {"fr": "Aujourd'hui", "en": "Today"},
       "home"                 : {"fr": "Accueil", "en": "Home"},
+      "about"                 : {"fr": "A propos", "en": "About"},
+      "contact"                 : {"fr": "Contact", "en": "Contact"},
       "from"                  : {"fr": "Du", "en": "From"},
       "to"                      : {"fr": "au", "en": "to"},
       "edit"                    : {"fr": "Editer", "en": "Edit"},
@@ -107,6 +109,8 @@ angular.module('app.services', [], function($provide) {
       "language"            : {"fr": "Langue", "en": "Language"},
       "french"                : {"fr": "Français", "en": "French"},
       "english"               : {"fr": "Anglais", "en": "English"},
+      "total"               : {"fr": "Total", "en": "Total"},
+
 
       "paymentClubmed"               : {"fr": "M&E", "en": "M&E"},
       "paymentCustomer"               : {"fr": "Client", "en": "Customer"},

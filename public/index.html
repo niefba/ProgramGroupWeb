@@ -2,7 +2,7 @@
 <html lang="en" ng-app="programGroupApp">
 <head>
   <meta charset="utf-8">
-  <title>Program Group for Club Med</title>
+  <title>MAGA</title>
   <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
   <link href="/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/app.css">
@@ -19,17 +19,17 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Program Group</a>
+        <a class="navbar-brand" href="#">MAGA</a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li ng-class="{'active':location.path() == '/'}"><a href="/">{{ msg.home | translate:lang }}</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#about">{{ msg.about | translate:lang }}</a></li>
+          <li><a href="#contact">{{ msg.contact | translate:lang }}</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ msg.language | translate:lang }} <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li ng-class="{'active': lang == 'fr'}"><a href="#" ng-click="lang='fr'">{{ msg.french | translate:lang }}</a></li>
+              <li ng-class="{'active': lang == 'fr'}"><a href="#" ng-init="lang='fr'" ng-click="lang='fr'">{{ msg.french | translate:lang }}</a></li>
               <li ng-class="{'active': lang == 'en'}"><a href="#" ng-click="lang='en'">{{ msg.english | translate:lang }}</a></li>
             </ul>
           </li>

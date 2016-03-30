@@ -55,10 +55,10 @@
               </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error': formLine.comment.$invalid}">
               <label for="comment" class="col-sm-4 control-label">{{ msg.comment | translate:lang }}</label>
               <div class="col-sm-8">
-                <textarea class="form-control" rows="3" ng-model="line.comment"></textarea>
+                <textarea class="form-control" name="comment" rows="6" ng-maxlength="300" ng-model="line.comment"></textarea>
               </div>
             </div>
           </form>
