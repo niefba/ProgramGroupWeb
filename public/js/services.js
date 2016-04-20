@@ -39,9 +39,15 @@ angular.module('app.services', [], function($provide) {
             success(function(data, status, headers, config) {
               console.log(data);
               manager.transaction = data;
-               if (!manager.transaction.eventPersonalization) {
-                manager.transaction.eventPersonalization = {commentProduction: '', commentResort: ''};
-              }
+              var types = ['eventPersonalization', 'vipOffered', 'vip', 'arrivalNoTransfer', 'departNoTransfer',
+                'transferArrival', 'transfertDepart', 'coffeeBreaks', 'cocktails', 'restaurantIncluded', 'restaurantExtra', 'additionalMeals', 'conferenceRooms',
+                'basicEquipment', 'rentalEquipment', 'discovery', 'otherServices', 'skiRental', 'skiBootRental', 'skiInstructor'];
+              angular.forEach(types, function(type) {
+                if (!manager.transaction[type]) {
+                  manager.transaction[type] = {commentProduction: '', commentResort: ''};
+                }
+              });
+               
               $location.path('/');
             });
          },
@@ -96,6 +102,7 @@ angular.module('app.services', [], function($provide) {
       "close" : {"fr": "Fermer", "en": "Close"},
       "cancel" : {"fr": "Annuler", "en": "Cancel"},
       "formatDate" : {"fr": "aaaa-mm-jj", "en": "yyyy-mm-dd"},
+      "formatHour" : {"fr": "hh:mm", "en": "hh:mm"},
       "today"                 : {"fr": "Aujourd'hui", "en": "Today"},
       "home"                 : {"fr": "Accueil", "en": "Home"},
       "about"                 : {"fr": "A propos", "en": "About"},
@@ -111,6 +118,23 @@ angular.module('app.services', [], function($provide) {
       "english"               : {"fr": "Anglais", "en": "English"},
       "total"               : {"fr": "Total", "en": "Total"},
 
+      // Radio Origin
+      "shop" : {"fr": "Boutique", "en": "Shop"},
+      "customer" : {"fr": "Client", "en": "Customer"},
+      "other" : {"fr": "Autre", "en": "Other"},
+
+      // Radio beforeAfterLunch
+      "beforeLunch":  {"fr": "Avant", "en": "Before"},
+      "afterLunch":  {"fr": "Après", "en": "After"},
+
+      // Radio busCarTaxi
+      "bus" : {"fr": "Bus", "en": "Bus"},
+      "car" : {"fr": "Voiture", "en": "Car"},
+      "taxi" : {"fr": "Taxi", "en": "Taxi"},
+
+      // Radio clubTicket
+      "yes" : {"fr": "Oui", "en": "Yes"},
+      "no" : {"fr": "Non", "en": "No"},
 
       "paymentClubmed"               : {"fr": "M&E", "en": "M&E"},
       "paymentCustomer"               : {"fr": "Client", "en": "Customer"},
@@ -119,14 +143,55 @@ angular.module('app.services', [], function($provide) {
       "noLine"               : {"fr": "Aucune ligne.", "en": "No line."},
       "noComment"               : {"fr": "Aucun commentaire.", "en": "No comment."},
       "comment"               : {"fr": "Commentaire", "en": "M&E Comment"},
-      "commentProduction"               : {"fr": "Commentaires Production M&E", "en": "M&E Comments"},
+      "commentProduction"               : {"fr": "Commentaires M&E", "en": "M&E Comments"},
       "commentResort"               : {"fr": "Commentaires Village", "en": "Resort Comments"},
       "addLine"                    : {"fr": "Ajouter une ligne", "en": "Add a line"},
+
+      // Table columns for services
       "date"                    : {"fr": "Date", "en": "Date"},
+      "hour"                    : {"fr": "Heure", "en": "Time"},
       "quantity"                    : {"fr": "Quantité", "en": "Quantity"},
-      "price"                    : {"fr": "Prix", "en": "Price"},
+      "price": {"fr": "Tarif unitaire", "en": "Unit price"},
       "prestation"                    : {"fr": "Prestation", "en": "Prestation"},
       "payment"                    : {"fr": "Paiement", "en": "Payment"},
+      "hour":  {"fr": "Heure", "en": "Hour"},
+      "nbPerson": {"fr": "Nb de personnes", "en": "No. of people"},
+      "beforeAfterLunch":  {"fr": "Avant ou après déjeuner", "en": "Before or after lunch"},
+      "busCarTaxi":  {"fr": "Bus ou voiture", "en": "Bus or car"},
+      "nbBusTaxi": {"fr":  "Nb bus/taxi", "en": "No. bus/taxi"},
+      "origin": {"fr": "Provenance", "en": "Origin"},
+      "giftType": {"fr": "Type Cadeau", "en": "Type of gift"},
+      "depositPrice": {"fr": "Prix Dépôt", "en": "Deposit price"},
+      "cocktailType": {"fr": "Type de Cocktail", "en": "Type of cocktail"},
+      "pricePerPerson": {"fr": "Tarif par personne", "en": "Price/pax"},
+      "place": {"fr": "Lieu", "en": "Location"},
+      "lunchDiner": {"fr": "Déjeuner / Dîner", "en": "Lunch/Dinner"},
+      "tourType": {"fr": "Type d'excursion", "en" : "Type of excursion"},
+      "dateFromTo": {"fr": "Date (du-au)", "en": "Date (from-to)"},
+      "nbDay": {"fr": "Nbre de jours", "en": "No. of days"},
+      "equipmentType": {"fr": "Type de matériel", "en": "Type of equipment"},
+      "shoeRental": {"fr": "Loc. Chaussures", "en": "Quantity"},
+      "skiRental": {"fr": "Loc. Skis", "en": "Quantity"},
+      "roomName": {"fr": "Nom de la salle", "en": "Room name"},
+      "room": {"fr": "Salle", "en": "Room"},
+      "nbRoom": {"fr": "Nbre de Salles", "en": "No. of rooms"},
+      "nbInstructor": {"fr": "Nbre de moniteurs", "en": "No. of Ski instructor"},
+      "breakType": {"fr": "Type de pause", "en": "Type of breaks"},
+      "welcomeType": {"fr": "Prestation", "en": "Prestation"},
+      "serviceType": {"fr": "Type de prestation", "en": "Type of service"},
+      "arrangement": {"fr": "Disposition", "en": "Room Style"},
+      "flightTrainNo": {"fr": "N°Vol/N°Train", "en": "Train/Flight No."},
+      "airportStation": {"fr": "Aéroport / Gare", "en": "Airport/Station"},
+      "hourAirportStation": {"fr": "Heure Aéroport / Gare", "en": "Airport/Station hour"},
+      "hourResort": {"fr": "Heure village", "en": "Resort hour"},
+      "comingFrom": {"fr": "Provenance", "en": "Coming from"},
+      "clubTicket": {"fr": "Billet Club", "en": "CM Tickets"},
+      "destination": {"fr": "Destination", "en": "Destination"},
+      "titleVIP": {"fr": "Nom Client", "en": "Client name"},
+      "typeVIP": {"fr": "Type VIP", "en": "Type of VIP"},
+      "arrivalDate": {"fr": "Date arrivée", "en": "Arrival date"},
+      "name": {"fr": "Nom(s)", "en": "Name(s)"},
+      "basicEquipment": {"fr": "Matériel de base", "en": "Basic equipment"},
 
       // Informations
       "chiefOfVillage"       : {"fr": "Nom du Chef de Village", "en": "Chief of Village"},
@@ -145,6 +210,8 @@ angular.module('app.services', [], function($provide) {
       "dateTo"               : {"fr": "Départ", "en": "Departure"},
       "numbreOfPeople"       : {"fr": "Nombre de participants", "en": "No. of people"},
       "transactionNumber"    : {"fr": "N° opération", "en": "Transaction #"},
+
+      // Services
       "eventPersonalization" : {"fr": "Personnalisation Evénementielle", "en": "Event Personalization"},
       "vipOffered"           : {"fr": "VIP offert", "en": "VIP welcome offered"},
       "vip"                  : {"fr": "VIP", "en": "VIP paying welcome"},

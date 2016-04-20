@@ -1,0 +1,48 @@
+<div class="form-group" ng-class="{'has-error': formLine.titleVIP.$invalid}">
+  <label for="titleVIP" class="col-sm-4 control-label">{{ msg.titleVIP | translate:lang }}</label>
+  <div class="col-sm-8">
+    <input type="text" class="form-control" name="titleVIP" ng-model="line.titleVIP" placeholder="{{ msg.titleVIP | translate:lang }}" required>
+  </div>
+</div>
+
+<div class="form-group" ng-class="{'has-error': formLine.typeVIP.$invalid}">
+  <label for="typeVIP" class="col-sm-4 control-label">{{ msg.typeVIP | translate:lang }}</label>
+  <div class="col-sm-8">
+    <input type="text" class="form-control" name="typeVIP" ng-model="line.typeVIP" placeholder="{{ msg.typeVIP | translate:lang }}" required>
+  </div>
+</div>
+
+<div class="form-group" ng-class="{'has-error': formLine.arrivalDate.$invalid}">
+  <label for="arrivalDate" class="col-sm-4 control-label">{{ msg.arrivalDate | translate:lang }}</label>
+  <div class="col-sm-8">
+    <div class="input-group">
+      <input type="date" class="form-control" name="arrivalDate" ng-model="line.arrivalDate" placeholder="{{ msg.formatDate | translate:lang }}" required>
+      <div data-date-picker data-model="line.arrivalDate" data-lang="{{ lang }}" data-msg="msg"></div>
+    </div>
+  </div>
+</div>
+
+<div class="form-group"  ng-class="{'has-error': formLine.quantity.$invalid}">
+  <label for="quantity" class="col-sm-4 control-label">{{ msg.quantity | translate:lang }}</label>
+  <div class="col-sm-8">
+    <input type="number" class="form-control" name="quantity" ng-model="line.quantity" placeholder="{{ msg.quantity | translate:lang }}" ng-pattern="/^[0-9]*$/" required>
+  </div>
+</div>
+
+<div class="form-group"  ng-class="{'has-error': formLine.price.$invalid}">
+  <label for="price" class="col-sm-4 control-label">{{ msg.price | translate:lang }}</label>
+  <div class="col-sm-8">
+    <input type="number" class="form-control" name="price" ng-model="line.price" placeholder="{{ msg.price | translate:lang }}" ng-pattern="/^[0-9\.]*$/" required>
+  </div>
+</div>
+
+<div class="form-group"  ng-class="{'has-error': formLine.payment.$invalid}">
+  <label for="payment" class="col-sm-4 control-label">{{ msg.payment | translate:lang }}</label>
+  <div class="col-sm-8">
+    <select class="form-control" name="payment" ng-model="line.payment" required>
+      <option>{{ msg.paymentClubmed | translate:lang }}</option>
+      <option>{{ msg.paymentResort | translate:lang }}</option>
+      <option>{{ msg.paymentCustomer | translate:lang }}</option>
+    </select>
+  </div>
+</div>

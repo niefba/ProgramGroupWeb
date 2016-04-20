@@ -1,4 +1,4 @@
-<div class="col-md-8">
+<div class="col-md-9">
 
   <h2>
     {{ msg[type] | translate:lang }}
@@ -8,47 +8,16 @@
     </button>
   </h2>
 
-  <div class="alert alert-info" ng-hide="(manager.transaction.services | filter:{type:type}).length">
+  <div class="alert alert-info" ng-hide="(manager.transaction.services | filter:{type:type}:true).length">
     {{ msg.noLine | translate:lang }}
   </div>
 
-  <table class="table" ng-show="(manager.transaction.services | filter:{type:type}).length">
-    <thead>
-      <tr>
-        <th>{{ msg.date | translate:lang }}</th>
-        <th>{{ msg.prestation | translate:lang }}</th>
-        <th class="text-right">{{ msg.quantity | translate:lang }}</th>
-        <th class="text-right">{{ msg.price | translate:lang }}</th>
-        <th class="text-center">{{ msg.payment | translate:lang }}</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat-start="line in manager.transaction.services | filter:{type:type} track by $index">
-        <th scope="row">{{ line.date | date: 'yyyy-MM-dd' }}</th>
-        <td>{{ line.prestation }}</td>
-        <td class="text-right">{{ line.quantity }}</td>
-        <td class="text-right">{{ line.price }} {{ devise }}</td>
-        <td class="text-center">{{ line.payment }}</td>
-        <td>
-          <div class="btn-group pull-right" role="group">
-            <button type="button" class="btn btn-default btn-sm" ng-click="editLine(line)"><span class="glyphicon glyphicon-pencil"></span></button>
-            <button type="button" class="btn btn-default btn-sm" ng-click="copyLine(line)"><span class="glyphicon glyphicon-copy"></span></button>
-            <button type="button" class="btn btn-default btn-sm" ng-click="deleteLine(line)"><span class="glyphicon glyphicon-trash"></span></button>
-          </div>
-        </td>
-      </tr>
-      <tr ng-repeat-end ng-show="line.comment"><td></td><td colspan="5"><small><i>{{ line.comment }}</i></small></td></tr>
-      <tr class="bg-primary">
-        <td class="text-right" colspan="3"><strong>{{ msg.total | translate:lang }} {{ msg[type] | translate:lang }}:</strong></td>
-        <td class="text-right"><strong>{{total}} {{ devise }}</strong></td>
-        <td class="text-right" colspan="2"></td>
-      </tr>
-    </tbody>
-  </table>
+  <div ng-include="templateType"></div>
+
 </div>
 
-<div class="col-md-4">
+<div class="col-md-3">
+  <br>
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">

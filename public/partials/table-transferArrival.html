@@ -1,0 +1,41 @@
+<table class="table" ng-show="(manager.transaction.services | filter:{type:type}:true).length">
+  <thead>
+    <tr>
+      <th>{{ msg.date | translate:lang }}</th>
+      <th>{{ msg.flightTrainNo | translate:lang }}</th>
+      <th>{{ msg.hourAirportStation | translate:lang }}</th>
+      <th>{{ msg.hourResort | translate:lang }}</th>
+      <th>{{ msg.airportStation | translate:lang }}</th>
+      <th>{{ msg.comingFrom | translate:lang }}</th>
+      <th class="text-right">{{ msg.nbPerson | translate:lang }}</th>
+      <th class="text-right">{{ msg.nbBusTaxi | translate:lang }}</th>
+      <th class="text-right">{{ msg.price | translate:lang }}</th>
+      <th class="text-center">{{ msg.clubTicket | translate:lang }}</th>
+      <th class="text-center">{{ msg.payment | translate:lang }}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat-start="line in manager.transaction.services | filter:{type:type}:true track by $index">
+      <th>{{ line.date | date: 'yyyy-MM-dd' }}</th>
+      <td>{{ line.flightTrainNo }}</td>
+      <td>{{ line.hourAirportStation }}</td>
+      <td>{{ line.hourResort }}</td>
+      <td>{{ line.airportStation }}</td>
+      <td>{{ line.comingFrom }}</td>
+      <td class="text-right">{{ line.nbPerson }}</td>
+      <td class="text-right">{{ line.nbBusTaxi }}</td>
+      <td class="text-right">{{ line.price }} {{ devise }}</td>
+      <td class="text-center">{{ msg[line.clubTicket]  | translate:lang }}</td>
+      <td class="text-center">{{ line.payment }}</td>
+      <td>
+        <div class="btn-group pull-right">
+          <button type="button" class="btn btn-default btn-sm" ng-click="editLine(line)"><span class="glyphicon glyphicon-pencil"></span></button>
+          <button type="button" class="btn btn-default btn-sm" ng-click="copyLine(line)"><span class="glyphicon glyphicon-copy"></span></button>
+          <button type="button" class="btn btn-default btn-sm" ng-click="deleteLine(line)"><span class="glyphicon glyphicon-trash"></span></button>
+        </div>
+      </td>
+    </tr>
+    <tr ng-repeat-end ng-show="line.comment"><td></td><td colspan="5"><small><i>{{ line.comment }}</i></small></td></tr>
+  </tbody>
+</table>

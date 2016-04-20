@@ -3,6 +3,9 @@
 /* Controllers */
 var programGroupControllers = angular.module('programGroupControllers', []);
 
+ /**
+ * App ctrl
+ */
 programGroupControllers.controller('AppCtrl', ['$scope', '$filter',  '$routeParams', 'Manager', 'Translation', '$location',
   function ($scope, $filter, $routeParams, Manager, Translation, $location) {
 
@@ -49,9 +52,14 @@ programGroupControllers.controller('AppCtrl', ['$scope', '$filter',  '$routePara
     }
   }]);
 
+ /**
+ * Service Ctrl used by service.html
+ */
 programGroupControllers.controller('ServiceCtrl', ['$scope', '$routeParams', 'filterFilter', 'Manager',
   function ($scope, $routeParams, filterFilter, Manager) {
     $scope.type = $routeParams.type;
+    $scope.templateType = 'partials/table-' + $scope.type + '.html';
+    $scope.templateField = 'partials/field-'  + $scope.type + '.html';
 
     $scope.closeTemplate = function () {
       $scope.template = '';
@@ -85,7 +93,12 @@ programGroupControllers.controller('ServiceCtrl', ['$scope', '$routeParams', 'fi
       $scope.newLine = false;
       $scope.servicesCopy = angular.copy($scope.manager.transaction.services);
       $scope.line = line;
-      $scope.line.date = new Date(line.date);
+      if (line.date) {
+        $scope.line.date = new Date(line.date);
+      }
+      if (line.arrivalDate) {
+        $scope.line.arrivalDate = new Date(line.arrivalDate);
+      }
       $scope.template = '/partials/form-service.html';
     }
 
@@ -107,7 +120,10 @@ programGroupControllers.controller('ServiceCtrl', ['$scope', '$routeParams', 'fi
 
     $scope.editComment = function (commentFrom) {
       $scope.commentFrom = commentFrom;
-      $scope.comment = $scope.manager.transaction[$scope.type][commentFrom];
+      console.log($scope.type);
+      if ($scope.manager.transaction[$scope.type][commentFrom]) {
+        $scope.comment = $scope.manager.transaction[$scope.type][commentFrom];
+      }
       $scope.template = '/partials/form-comment.html';
     }
 

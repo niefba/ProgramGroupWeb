@@ -13,6 +13,20 @@ body {
   display: block;
 }
 
+.navbar {
+  background:  rgb(0, 85, 137);
+}
+
+.navbar .container {
+  background-image: url(/img/logo-collectivites-white.png);
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+.navbar-nav > li > a {
+    line-height: 35px;
+}
+
 /*
 |
 | Dropdown-menu for date picker

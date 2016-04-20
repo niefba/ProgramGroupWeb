@@ -37,7 +37,87 @@ var Transaction = ottoman.model('Transaction', {
   eventPersonalization: {
     commentProduction: 'string',
     commentResort: 'string'
-  }
+  },
+  vipOffered: {
+    commentProduction: 'string',
+    commentResort: 'string'
+  },
+  vip: {
+    commentProduction: 'string',
+    commentResort: 'string'
+  },
+  gift: {
+    commentProduction: 'string',
+    commentResort: 'string'
+  },
+  arrivalNoTransfer: {
+    commentProduction: 'string',
+    commentResort: 'string'
+  },
+  departNoTransfer: {
+    commentProduction: 'string',
+    commentResort: 'string'
+  },
+  transferArrival: {
+    commentProduction: 'string',
+    commentResort: 'string'
+  },
+  transfertDepart: {
+    commentProduction: 'string',
+    commentResort: 'string'
+  },
+  coffeeBreaks: {
+    commentProduction: 'string',
+    commentResort: 'string'
+  },
+  cocktails: {
+    commentProduction: 'string',
+    commentResort: 'string'
+  },
+  restaurantIncluded: {
+    commentProduction: 'string',
+    commentResort: 'string'
+  },
+  restaurantExtra: {
+    commentProduction: 'string',
+    commentResort: 'string'
+  },
+  additionalMeals: {
+    commentProduction: 'string',
+    commentResort: 'string'
+  },
+  conferenceRooms: {
+    commentProduction: 'string',
+    commentResort: 'string'
+  },
+  basicEquipment: {
+    commentProduction: 'string',
+    commentResort: 'string'
+  },
+  rentalEquipment: {
+    commentProduction: 'string',
+    commentResort: 'string'
+  },
+  discovery: {
+    commentProduction: 'string',
+    commentResort: 'string'
+  },
+  otherServices: {
+    commentProduction: 'string',
+    commentResort: 'string'
+  },
+  skiRental: {
+    commentProduction: 'string',
+    commentResort: 'string'
+  },
+  skiBootRental: {
+    commentProduction: 'string',
+    commentResort: 'string'
+  },
+  skiInstructor: {
+    commentProduction: 'string',
+    commentResort: 'string'
+  },
 }, {
   index: {
     findByNumber: {
