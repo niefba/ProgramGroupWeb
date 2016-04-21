@@ -29,6 +29,15 @@ body {
 
 /*
 |
+| Table
+|
+*/
+.table > tbody > tr > td .btn-group {
+    min-width: 100px;
+}
+
+/*
+|
 | Dropdown-menu for date picker
 |
 */

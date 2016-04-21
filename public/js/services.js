@@ -136,6 +136,17 @@ angular.module('app.services', [], function($provide) {
       "yes" : {"fr": "Oui", "en": "Yes"},
       "no" : {"fr": "Non", "en": "No"},
 
+      // Radio lunchDinner
+      "lunch" : {"fr": "Déjeuner", "en": "Lunch"},
+      "dinner" : {"fr": "Dîner", "en": "Dinner"},
+
+      // Select arrangement
+      "arrangementU" : {"fr": "En U", "en": "U style"},
+      "arrangementTheatre" : {"fr": "Théâtre", "en": "Theatre"},
+      "arrangementConference" : {"fr": "Conférence", "en": "Conference"},
+      "arrangementClassroom" : {"fr": "Salle de classe", "en": "Classroom"},
+
+      // Select payment
       "paymentClubmed"               : {"fr": "M&E", "en": "M&E"},
       "paymentCustomer"               : {"fr": "Client", "en": "Customer"},
       "paymentResort"               : {"fr": "Village", "en": "Resort"},
@@ -149,7 +160,10 @@ angular.module('app.services', [], function($provide) {
 
       // Table columns for services
       "date"                    : {"fr": "Date", "en": "Date"},
+      "schedule"                    : {"fr": "Horaire", "en": "Schedule"},
       "hour"                    : {"fr": "Heure", "en": "Time"},
+      "hourFrom"                    : {"fr": "de", "en": "from"},
+      "hourTo"                    : {"fr": "à", "en": "to"},
       "quantity"                    : {"fr": "Quantité", "en": "Quantity"},
       "price": {"fr": "Tarif unitaire", "en": "Unit price"},
       "prestation"                    : {"fr": "Prestation", "en": "Prestation"},
@@ -165,8 +179,8 @@ angular.module('app.services', [], function($provide) {
       "cocktailType": {"fr": "Type de Cocktail", "en": "Type of cocktail"},
       "pricePerPerson": {"fr": "Tarif par personne", "en": "Price/pax"},
       "place": {"fr": "Lieu", "en": "Location"},
-      "lunchDiner": {"fr": "Déjeuner / Dîner", "en": "Lunch/Dinner"},
-      "tourType": {"fr": "Type d'excursion", "en" : "Type of excursion"},
+      "lunchDinner": {"fr": "Déjeuner / Dîner", "en": "Lunch/Dinner"},
+      "discoveryType": {"fr": "Type d'excursion", "en" : "Type of excursion"},
       "dateFromTo": {"fr": "Date (du-au)", "en": "Date (from-to)"},
       "nbDay": {"fr": "Nbre de jours", "en": "No. of days"},
       "equipmentType": {"fr": "Type de matériel", "en": "Type of equipment"},
@@ -190,8 +204,7 @@ angular.module('app.services', [], function($provide) {
       "titleVIP": {"fr": "Nom Client", "en": "Client name"},
       "typeVIP": {"fr": "Type VIP", "en": "Type of VIP"},
       "arrivalDate": {"fr": "Date arrivée", "en": "Arrival date"},
-      "name": {"fr": "Nom(s)", "en": "Name(s)"},
-      "basicEquipment": {"fr": "Matériel de base", "en": "Basic equipment"},
+      "names": {"fr": "Nom(s)", "en": "Name(s)"},
 
       // Informations
       "chiefOfVillage"       : {"fr": "Nom du Chef de Village", "en": "Chief of Village"},
@@ -226,13 +239,14 @@ angular.module('app.services', [], function($provide) {
       "cocktails"            : {"fr": "Cocktails", "en": "Cocktails"},
       "restaurantIncluded"   : {"fr": "Restaurant SF", "en": "Restaurant included"},
       "restaurantExtra"      : {"fr": "Restaurant AF", "en": "Restaurant with extra fees"},
-      "additionalMeals"      : {"fr": "Repas supplémentaires", "en": "Additional meals"},
+      "additionalMealsArrival"      : {"fr": "Repas supplémentaires arrivée", "en": "Arrival additional meals"},
+      "additionalMealsDepart"      : {"fr": "Repas supplémentaires départ", "en": "Departure additional meals"},
       "conferenceRooms"      : {"fr": "Salles", "en": "Conference rooms"},
       "basicEquipment"       : {"fr": "Matériel base", "en": "Basic equipment"},
       "rentalEquipment"      : {"fr": "Matériel location", "en": "Rental equipment"},
       "eventManager"         : {"fr": "Chef de projet Evénementiel", "en": "Event Manager Project"},
       "discovery"            : {"fr": "Espace Découverte", "en": "Discovery"},
-      "otherServices"        : {"fr": "Prestations diverses", "en": "Other services"},
+      "otherServices"        : {"fr": "Prestations autres", "en": "Other services"},
       "skiRental"            : {"fr": "Location de skis", "en": "Ski rental"},
       "skiBootRental"        : {"fr": "Location de chaussures", "en": "Ski boot rental"},
       "skiInstructor"        : {"fr": "Moniteur", "en": "Ski instructor"},

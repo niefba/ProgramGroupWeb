@@ -1,0 +1,16 @@
+<div class="form-group" ng-class="{'has-error': formLine.date.$invalid}">
+  <label for="date" class="col-sm-4 control-label">{{ msg.date | translate:lang }}</label>
+  <div class="col-sm-8">
+    <div class="input-group">
+      <input type="date" class="form-control" name="date" ng-model="line.date" placeholder="{{ msg.formatDate | translate:lang }}" required>
+      <div data-date-picker data-model="line.date" data-lang="{{ lang }}" data-msg="msg"></div>
+    </div>
+  </div>
+</div>
+
+<div class="form-group" ng-class="{'has-error': formLine.roomName.$invalid}">
+  <label for="roomName" class="col-sm-4 control-label">{{ msg.roomName | translate:lang }}</label>
+  <div class="col-sm-8">
+    <input type="text" class="form-control" name="roomName" ng-model="line.roomName" placeholder="{{ msg.roomName | translate:lang }}" required>
+  </div>
+</div>
