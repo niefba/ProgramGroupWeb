@@ -184,8 +184,6 @@ angular.module('app.services', [], function($provide) {
       "dateFromTo": {"fr": "Date (du-au)", "en": "Date (from-to)"},
       "nbDay": {"fr": "Nbre de jours", "en": "No. of days"},
       "equipmentType": {"fr": "Type de matériel", "en": "Type of equipment"},
-      "shoeRental": {"fr": "Loc. Chaussures", "en": "Quantity"},
-      "skiRental": {"fr": "Loc. Skis", "en": "Quantity"},
       "roomName": {"fr": "Nom de la salle", "en": "Room name"},
       "room": {"fr": "Salle", "en": "Room"},
       "nbRoom": {"fr": "Nbre de Salles", "en": "No. of rooms"},

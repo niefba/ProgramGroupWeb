@@ -96,6 +96,9 @@ programGroupControllers.controller('ServiceCtrl', ['$scope', '$routeParams', 'fi
       if (line.date) {
         $scope.line.date = new Date(line.date);
       }
+      if (line.dateTo) {
+        $scope.line.dateTo = new Date(line.dateTo);
+      }
       if (line.arrivalDate) {
         $scope.line.arrivalDate = new Date(line.arrivalDate);
       }
@@ -110,6 +113,10 @@ programGroupControllers.controller('ServiceCtrl', ['$scope', '$routeParams', 'fi
     }
 
     $scope.saveLine = function (line) {
+      // nbDay for skiRental or skiBootRental
+      if ($scope.type == 'skiRental' || $scope.type == 'skiBootRental') {
+        line.nbDay = 1 +  (line.dateTo - line.date) / (24 * 3600 * 1000);
+      }
       if ($scope.newLine) {
         $scope.manager.transaction.services.push(line);
       }
@@ -136,7 +143,13 @@ programGroupControllers.controller('ServiceCtrl', ['$scope', '$routeParams', 'fi
     $scope.calculTotal = function () {
       $scope.total = 0;
       angular.forEach(filterFilter($scope.manager.transaction.services, {type:$scope.type}), function(value, key) {
-        $scope.total += (value.price * value.quantity);
+        // Total for skiRental, skiBootRental
+        if ($scope.type == 'skiRental' || $scope.type == 'skiBootRental') {
+          $scope.total += (value.nbDay * value.price * value.quantity);  
+        }
+        else {
+          $scope.total += (value.price * value.quantity);
+        }
       });
     }
     $scope.calculTotal();
