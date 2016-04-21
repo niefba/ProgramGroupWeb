@@ -1,0 +1,34 @@
+<table class="table" ng-show="(manager.transaction.services | filter:{type:type}:true).length">
+  <thead>
+    <tr>
+      <th>{{ msg.date | translate:lang }}</th>
+      <th>{{ msg.serviceType | translate:lang }}</th>
+      <th class="text-right">{{ msg.quantity | translate:lang }}</th>
+      <th class="text-right">{{ msg.price | translate:lang }}</th>
+      <th class="text-center">{{ msg.payment | translate:lang }}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat-start="line in manager.transaction.services | filter:{type:type}:true track by $index">
+      <th>{{ line.date | date: 'yyyy-MM-dd' }}</th>
+      <td>{{ line.serviceType }}</td>
+      <td class="text-right">{{ line.quantity }}</td>
+      <td class="text-right">{{ line.price }} {{ devise }}</td>
+      <td class="text-center">{{ line.payment }}</td>
+      <td>
+        <div class="btn-group pull-right">
+          <button type="button" class="btn btn-default btn-sm" ng-click="editLine(line)"><span class="glyphicon glyphicon-pencil"></span></button>
+          <button type="button" class="btn btn-default btn-sm" ng-click="copyLine(line)"><span class="glyphicon glyphicon-copy"></span></button>
+          <button type="button" class="btn btn-default btn-sm" ng-click="deleteLine(line)"><span class="glyphicon glyphicon-trash"></span></button>
+        </div>
+      </td>
+    </tr>
+    <tr ng-repeat-end ng-show="line.comment"><td></td><td colspan="5"><small><i>{{ line.comment }}</i></small></td></tr>
+    <tr class="bg-primary">
+      <td class="text-left" colspan="3"><strong>TOTAL</strong></td>
+      <td class="text-right"><strong>{{total}} {{ devise }}</strong></td>
+      <td class="text-right" colspan="2"></td>
+    </tr>
+  </tbody>
+</table>

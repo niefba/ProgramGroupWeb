@@ -119,26 +119,26 @@ angular.module('app.services', [], function($provide) {
       "total"               : {"fr": "Total", "en": "Total"},
 
       // Radio Origin
-      "shop" : {"fr": "Boutique", "en": "Shop"},
-      "customer" : {"fr": "Client", "en": "Customer"},
-      "other" : {"fr": "Autre", "en": "Other"},
+      "radioShop" : {"fr": "Boutique", "en": "Shop"},
+      "radioCustomer" : {"fr": "Client", "en": "Customer"},
+      "radioOther" : {"fr": "Autre", "en": "Other"},
 
       // Radio beforeAfterLunch
-      "beforeLunch":  {"fr": "Avant", "en": "Before"},
-      "afterLunch":  {"fr": "Après", "en": "After"},
+      "radioBeforeLunch":  {"fr": "Avant", "en": "Before"},
+      "radioAfterLunch":  {"fr": "Après", "en": "After"},
 
       // Radio busCarTaxi
-      "bus" : {"fr": "Bus", "en": "Bus"},
-      "car" : {"fr": "Voiture", "en": "Car"},
-      "taxi" : {"fr": "Taxi", "en": "Taxi"},
+      "radioBus" : {"fr": "Bus", "en": "Bus"},
+      "radioCar" : {"fr": "Voiture", "en": "Car"},
+      "radioTaxi" : {"fr": "Taxi", "en": "Taxi"},
 
       // Radio clubTicket
       "yes" : {"fr": "Oui", "en": "Yes"},
       "no" : {"fr": "Non", "en": "No"},
 
       // Radio lunchDinner
-      "lunch" : {"fr": "Déjeuner", "en": "Lunch"},
-      "dinner" : {"fr": "Dîner", "en": "Dinner"},
+      "radioLunch" : {"fr": "Déjeuner", "en": "Lunch"},
+      "radioDinner" : {"fr": "Dîner", "en": "Dinner"},
 
       // Select arrangement
       "arrangementU" : {"fr": "En U", "en": "U style"},
@@ -203,6 +203,19 @@ angular.module('app.services', [], function($provide) {
       "typeVIP": {"fr": "Type VIP", "en": "Type of VIP"},
       "arrivalDate": {"fr": "Date arrivée", "en": "Arrival date"},
       "names": {"fr": "Nom(s)", "en": "Name(s)"},
+      "productType": {"fr": "Produit", "en": "Product"},
+      "nbBreakfast": {"fr": "Nb de P. Déjeuner", "en": "No. of breakfast"},
+      "hourBreakfast": {"fr": "Heure", "en": "Time"},
+      "placeBreakfast": {"fr": "Lieu", "en": "Location"},
+      "nbLunch": {"fr": "Nb de Déjeuner", "en": "No. of lunch"},
+      "hourLunch": {"fr": "Heure", "en": "Time"},
+      "placeLunch": {"fr": "Lieu", "en": "Location"},
+      "nbDinner": {"fr": "Nb de Diner", "en": "No. of dinner"},
+      "hourDinner": {"fr": "Heure", "en": "Time"},
+      "placeDinner": {"fr": "Lieu", "en": "Location"},
+      "cookingType": {"fr": "Prestation", "en": "Service"},
+      "catererType": {"fr": "Prestation", "en": "Service"},
+      "catererName": {"fr": "Nom prestataire", "en": "Service provider"},
 
       // Informations
       "chiefOfVillage"       : {"fr": "Nom du Chef de Village", "en": "Chief of Village"},
@@ -263,6 +276,17 @@ angular.module('app.services', [], function($provide) {
       "nonContractualExtras" : {"fr": "Atteindre prestations payantes non prévues", "en": "Open non-contractual paying extras"},
       "clubMedExtras"       : {"fr": "Atteindre prestations M&E + Village", "en": "Open M&E + Resort extras"},
       "planningReport"       : {"fr": "Atteindre rapprochement Village", "en": "Open Planning Report"},
+      "securityInformation"                 : {"fr": "Informations sécurité", "en": "Security information"},
+      "shop"                 : {"fr": "Boutique", "en": "Shop"},
+      "conferenceInformation"                 : {"fr": "Conférence d'information dédiée", "en": "Conference of dedicaded information"},
+      "dailyMeals"                 : {"fr": "Repas journalier", "en": "Daily meals"},
+      "cooking"                 : {"fr": "Cuisine", "en": "Cooking"},
+      "caterer"                 : {"fr": "Traiteur", "en": "Caterer"},
+      "spa"                 : {"fr": "SPA", "en": "SPA"},
+      "photographer"                 : {"fr": "Photographe", "en": "Photographer"},
+      "spectacle"                 : {"fr": "Animation", "en": "Spectacle"},
+      "sports"                 : {"fr": "Sports", "en": "Sports"},
+      "skiInsurance"                 : {"fr": "Assurance ski Zéro Souci", "en": "Ski insurance"},
     };
 
 

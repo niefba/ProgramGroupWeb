@@ -1,0 +1,39 @@
+<table class="table" ng-show="(manager.transaction.services | filter:{type:type}:true).length">
+  <thead>
+    <tr>
+      <th>{{ msg.date | translate:lang }}</th>
+      <th class="text-right">{{ msg.nbBreakfast | translate:lang }}</th>
+      <th>{{ msg.hourBreakfast | translate:lang }}</th>
+      <th>{{ msg.placeBreakfast | translate:lang }}</th>
+      <th class="text-right">{{ msg.nbLunch | translate:lang }}</th>
+      <th>{{ msg.hourLunch | translate:lang }}</th>
+      <th>{{ msg.placeLunch | translate:lang }}</th>
+      <th class="text-right">{{ msg.nbDinner | translate:lang }}</th>
+      <th>{{ msg.hourDinner | translate:lang }}</th>
+      <th>{{ msg.placeDinner | translate:lang }}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat-start="line in manager.transaction.services | filter:{type:type}:true track by $index">
+      <th>{{ line.date | date: 'yyyy-MM-dd' }}</th>
+      <td class="text-right">{{ line.nbBreakfast }}</td>
+      <td>{{ line.hourBreakfast }}</td>
+      <td>{{ line.placeBreakfast }}</td>
+      <td class="text-right">{{ line.nbLunch }}</td>
+      <td>{{ line.hourLunch }}</td>
+      <td>{{ line.placeLunch }}</td>
+      <td class="text-right">{{ line.nbDinner }}</td>
+      <td>{{ line.hourDinner }}</td>
+      <td>{{ line.placeDinner }}</td>
+      <td>
+        <div class="btn-group pull-right">
+          <button type="button" class="btn btn-default btn-sm" ng-click="editLine(line)"><span class="glyphicon glyphicon-pencil"></span></button>
+          <button type="button" class="btn btn-default btn-sm" ng-click="copyLine(line)"><span class="glyphicon glyphicon-copy"></span></button>
+          <button type="button" class="btn btn-default btn-sm" ng-click="deleteLine(line)"><span class="glyphicon glyphicon-trash"></span></button>
+        </div>
+      </td>
+    </tr>
+    <tr ng-repeat-end ng-show="line.comment"><td></td><td colspan="10"><small><i>{{ line.comment }}</i></small></td></tr>
+  </tbody>
+</table>

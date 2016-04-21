@@ -15,31 +15,24 @@
   </div>
 </div>
 
-<div class="form-group" ng-class="{'has-error': formLine.lunchDinner.$invalid}">
-  <label for="lunchDinner" class="col-sm-4 control-label"></label>
+<div class="form-group" ng-class="{'has-error': formLine.catererType.$invalid}">
+  <label for="catererType" class="col-sm-4 control-label">{{ msg.catererType | translate:lang }}</label>
   <div class="col-sm-8">
-    <label>
-      <input type="radio" name="lunchDinner" ng-model="line.lunchDinner" value="radioLunch" required>
-      {{ msg.radioLunch | translate:lang }}
-    </label>
-    <label>
-      <input type="radio" name="lunchDinner" ng-model="line.lunchDinner" value="radioDinner" required>
-      {{ msg.radioDinner | translate:lang }}
-    </label>
+    <input type="text" class="form-control" name="catererType" ng-model="line.catererType" placeholder="{{ msg.catererType | translate:lang }}" required>
   </div>
 </div>
 
-<div class="form-group" ng-class="{'has-error': formLine.names.$invalid}">
-  <label for="names" class="col-sm-4 control-label">{{ msg.names | translate:lang }}</label>
+<div class="form-group" ng-class="{'has-error': formLine.place.$invalid}">
+  <label for="place" class="col-sm-4 control-label">{{ msg.place | translate:lang }}</label>
   <div class="col-sm-8">
-    <input type="text" class="form-control" name="names" ng-model="line.names" placeholder="{{ msg.names | translate:lang }}" required>
+    <input type="text" class="form-control" name="place" ng-model="line.place" placeholder="{{ msg.place | translate:lang }}" required>
   </div>
 </div>
 
 <div class="form-group"  ng-class="{'has-error': formLine.quantity.$invalid}">
-  <label for="quantity" class="col-sm-4 control-label">{{ msg.nbPerson | translate:lang }}</label>
+  <label for="quantity" class="col-sm-4 control-label">{{ msg.quantity | translate:lang }}</label>
   <div class="col-sm-8">
-    <input type="number" class="form-control" name="quantity" ng-model="line.quantity" placeholder="{{ msg.nbPerson | translate:lang }}" ng-pattern="/^[0-9]*$/" required>
+    <input type="number" class="form-control" name="quantity" ng-model="line.quantity" placeholder="{{ msg.quantity | translate:lang }}" ng-pattern="/^[0-9]*$/" required>
   </div>
 </div>
 
@@ -47,6 +40,13 @@
   <label for="price" class="col-sm-4 control-label">{{ msg.price | translate:lang }}</label>
   <div class="col-sm-8">
     <input type="number" class="form-control" name="price" ng-model="line.price" placeholder="{{ msg.price | translate:lang }}" ng-pattern="/^[0-9\.]*$/" required>
+  </div>
+</div>
+
+<div class="form-group" ng-class="{'has-error': formLine.catererName.$invalid}">
+  <label for="catererName" class="col-sm-4 control-label">{{ msg.catererName | translate:lang }}</label>
+  <div class="col-sm-8">
+    <input type="text" class="form-control" name="catererName" ng-model="line.catererName" placeholder="{{ msg.catererName | translate:lang }}" required>
   </div>
 </div>
 

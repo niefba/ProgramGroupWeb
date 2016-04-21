@@ -26,12 +26,12 @@
   <label for="beforeAfterLunch" class="col-sm-4 control-label">{{ msg.beforeAfterLunch | translate:lang }}</label>
   <div class="col-sm-8">
     <label>
-      <input type="radio" name="beforeAfterLunch" ng-model="line.beforeAfterLunch" value="beforeLunch" required>
-      {{ msg.beforeLunch | translate:lang }}
+      <input type="radio" name="beforeAfterLunch" ng-model="line.beforeAfterLunch" value="radioBeforeLunch" required>
+      {{ msg.radioBeforeLunch | translate:lang }}
     </label>
     <label>
-      <input type="radio" name="beforeAfterLunch" ng-model="line.beforeAfterLunch" value="afterLunch" required>
-      {{ msg.afterLunch | translate:lang }}
+      <input type="radio" name="beforeAfterLunch" ng-model="line.beforeAfterLunch" value="radioAfterLunch" required>
+      {{ msg.radioAfterLunch | translate:lang }}
     </label>
   </div>
 </div>
@@ -40,16 +40,16 @@
   <label for="busCarTaxi" class="col-sm-4 control-label">{{ msg.busCarTaxi | translate:lang }}</label>
   <div class="col-sm-8">
     <label>
-      <input type="radio" name="busCarTaxi" ng-model="line.busCarTaxi" value="bus" required>
-      {{ msg.bus | translate:lang }}
+      <input type="radio" name="busCarTaxi" ng-model="line.busCarTaxi" value="radioBus" required>
+      {{ msg.radioBus | translate:lang }}
     </label>
     <label>
-      <input type="radio" name="busCarTaxi" ng-model="line.busCarTaxi" value="car" required>
-      {{ msg.car | translate:lang }}
+      <input type="radio" name="busCarTaxi" ng-model="line.busCarTaxi" value="radioCar" required>
+      {{ msg.radioCar | translate:lang }}
     </label>
     <label>
-      <input type="radio" name="busCarTaxi" ng-model="line.busCarTaxi" value="taxi" required>
-      {{ msg.taxi | translate:lang }}
+      <input type="radio" name="busCarTaxi" ng-model="line.busCarTaxi" value="radioTaxi" required>
+      {{ msg.radioTaxi | translate:lang }}
     </label>
   </div>
 </div>

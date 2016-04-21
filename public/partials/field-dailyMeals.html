@@ -1,0 +1,72 @@
+<div class="form-group" ng-class="{'has-error': formLine.date.$invalid}">
+  <label for="date" class="col-sm-4 control-label">{{ msg.date | translate:lang }}</label>
+  <div class="col-sm-8">
+    <div class="input-group">
+      <input type="date" class="form-control" name="date" ng-model="line.date" placeholder="{{ msg.formatDate | translate:lang }}" required>
+      <div data-date-picker data-model="line.date" data-lang="{{ lang }}" data-msg="msg"></div>
+    </div>
+  </div>
+</div>
+
+<div class="form-group"  ng-class="{'has-error': formLine.nbBreakfast.$invalid}">
+  <label for="nbBreakfast" class="col-sm-4 control-label">{{ msg.nbBreakfast | translate:lang }}</label>
+  <div class="col-sm-8">
+    <input type="number" class="form-control" name="nbBreakfast" ng-model="line.nbBreakfast" placeholder="{{ msg.nbBreakfast | translate:lang }}" ng-pattern="/^[0-9]*$/" required>
+  </div>
+</div>
+
+<div class="form-group" ng-class="{'has-error': formLine.hourBreakfast.$invalid}">
+  <label for="hourBreakfast" class="col-sm-4 control-label">{{ msg.hourBreakfast | translate:lang }}</label>
+  <div class="col-sm-8">
+    <input type="text" class="form-control" name="hourBreakfast" ng-model="line.hourBreakfast" placeholder="{{ msg.formatHour | translate:lang }}" ng-pattern="/^[0-9][0-9]:[0-9][0-9]$/" required>
+  </div>
+</div>
+
+<div class="form-group" ng-class="{'has-error': formLine.placeBreakfast.$invalid}">
+  <label for="placeBreakfast" class="col-sm-4 control-label">{{ msg.placeBreakfast | translate:lang }}</label>
+  <div class="col-sm-8">
+    <input type="text" class="form-control" name="placeBreakfast" ng-model="line.placeBreakfast" placeholder="{{ msg.placeBreakfast | translate:lang }}" required>
+  </div>
+</div>
+
+<div class="form-group"  ng-class="{'has-error': formLine.nbLunch.$invalid}">
+  <label for="nbLunch" class="col-sm-4 control-label">{{ msg.nbLunch | translate:lang }}</label>
+  <div class="col-sm-8">
+    <input type="number" class="form-control" name="nbLunch" ng-model="line.nbLunch" placeholder="{{ msg.nbLunch | translate:lang }}" ng-pattern="/^[0-9]*$/" required>
+  </div>
+</div>
+
+<div class="form-group" ng-class="{'has-error': formLine.hourLunch.$invalid}">
+  <label for="hourLunch" class="col-sm-4 control-label">{{ msg.hourLunch | translate:lang }}</label>
+  <div class="col-sm-8">
+    <input type="text" class="form-control" name="hourLunch" ng-model="line.hourLunch" placeholder="{{ msg.formatHour | translate:lang }}" ng-pattern="/^[0-9][0-9]:[0-9][0-9]$/" required>
+  </div>
+</div>
+
+<div class="form-group" ng-class="{'has-error': formLine.placeLunch.$invalid}">
+  <label for="placeLunch" class="col-sm-4 control-label">{{ msg.placeLunch | translate:lang }}</label>
+  <div class="col-sm-8">
+    <input type="text" class="form-control" name="placeLunch" ng-model="line.placeLunch" placeholder="{{ msg.placeLunch | translate:lang }}" required>
+  </div>
+</div>
+
+<div class="form-group"  ng-class="{'has-error': formLine.nbDinner.$invalid}">
+  <label for="nbDinner" class="col-sm-4 control-label">{{ msg.nbDinner | translate:lang }}</label>
+  <div class="col-sm-8">
+    <input type="number" class="form-control" name="nbDinner" ng-model="line.nbDinner" placeholder="{{ msg.nbDinner | translate:lang }}" ng-pattern="/^[0-9]*$/" required>
+  </div>
+</div>
+
+<div class="form-group" ng-class="{'has-error': formLine.hourDinner.$invalid}">
+  <label for="hourDinner" class="col-sm-4 control-label">{{ msg.hourDinner | translate:lang }}</label>
+  <div class="col-sm-8">
+    <input type="text" class="form-control" name="hourDinner" ng-model="line.hourDinner" placeholder="{{ msg.formatHour | translate:lang }}" ng-pattern="/^[0-9][0-9]:[0-9][0-9]$/" required>
+  </div>
+</div>
+
+<div class="form-group" ng-class="{'has-error': formLine.placeDinner.$invalid}">
+  <label for="placeDinner" class="col-sm-4 control-label">{{ msg.placeDinner | translate:lang }}</label>
+  <div class="col-sm-8">
+    <input type="text" class="form-control" name="placeDinner" ng-model="line.placeDinner" placeholder="{{ msg.placeDinner | translate:lang }}" required>
+  </div>
+</div>

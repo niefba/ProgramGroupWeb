@@ -72,6 +72,9 @@
   <div class="col-md-3" ng-hide="manager.transaction.error">
     <h2>{{ msg.services | translate:lang }}</h2>
     <ul class="list-unstyled">
+      <li><a href="service/conferenceInformation">{{ msg.conferenceInformation | translate:lang }}</a>
+        <span class="badge" ng-show="(manager.transaction.services | filter:{type:'conferenceInformation'}:true).length">{{ (manager.transaction.services | filter:{type:'conferenceInformation'}:true).length }}</span>
+      </li>
       <li><a href="service/eventPersonalization">{{ msg.eventPersonalization | translate:lang }}</a>
         <span class="badge" ng-show="(manager.transaction.services | filter:{type:'eventPersonalization'}:true).length">{{ (manager.transaction.services | filter:{type:'eventPersonalization'}:true).length }}</span>
       </li>
@@ -96,6 +99,9 @@
       <li><a href="service/transfertDepart">{{ msg.transfertDepart | translate:lang }}</a>
         <span class="badge" ng-show="(manager.transaction.services | filter:{type:'transfertDepart'}:true).length">{{ (manager.transaction.services | filter:{type:'transfertDepart'}:true).length }}</span>
       </li>
+      <li><a href="service/securityInformation">{{ msg.securityInformation | translate:lang }}</a>
+        <span class="badge" ng-show="(manager.transaction.services | filter:{type:'securityInformation'}:true).length">{{ (manager.transaction.services | filter:{type:'securityInformation'}:true).length }}</span>
+      </li>
       <li><a href="service/coffeeBreaks">{{ msg.coffeeBreaks | translate:lang }}</a>
         <span class="badge" ng-show="(manager.transaction.services | filter:{type:'coffeeBreaks'}:true).length">{{ (manager.transaction.services | filter:{type:'coffeeBreaks'}:true).length }}</span>
       </li>
@@ -114,6 +120,15 @@
       <li><a href="service/additionalMealsDepart">{{ msg.additionalMealsDepart | translate:lang }}</a>
         <span class="badge" ng-show="(manager.transaction.services | filter:{type:'additionalMealsDepart'}:true).length">{{ (manager.transaction.services | filter:{type:'additionalMealsDepart'}:true).length }}</span>
       </li>
+      <li><a href="service/dailyMeals">{{ msg.dailyMeals | translate:lang }}</a>
+        <span class="badge" ng-show="(manager.transaction.services | filter:{type:'dailyMeals'}:true).length">{{ (manager.transaction.services | filter:{type:'dailyMeals'}:true).length }}</span>
+      </li>
+      <li><a href="service/cooking">{{ msg.cooking | translate:lang }}</a>
+        <span class="badge" ng-show="(manager.transaction.services | filter:{type:'cooking'}:true).length">{{ (manager.transaction.services | filter:{type:'cooking'}:true).length }}</span>
+      </li>
+      <li><a href="service/caterer">{{ msg.caterer | translate:lang }}</a>
+        <span class="badge" ng-show="(manager.transaction.services | filter:{type:'caterer'}:true).length">{{ (manager.transaction.services | filter:{type:'caterer'}:true).length }}</span>
+      </li>
       <li><a href="service/conferenceRooms">{{ msg.conferenceRooms | translate:lang }}</a>
         <span class="badge" ng-show="(manager.transaction.services | filter:{type:'conferenceRooms'}:true).length">{{ (manager.transaction.services | filter:{type:'conferenceRooms'}:true).length }}</span>
       </li>
@@ -129,6 +144,21 @@
       <li><a href="service/otherServices">{{ msg.otherServices | translate:lang }}</a>
         <span class="badge" ng-show="(manager.transaction.services | filter:{type:'otherServices'}:true).length">{{ (manager.transaction.services | filter:{type:'otherServices'}:true).length }}</span>
       </li>
+      <li><a href="service/spa">{{ msg.spa | translate:lang }}</a>
+        <span class="badge" ng-show="(manager.transaction.services | filter:{type:'spa'}:true).length">{{ (manager.transaction.services | filter:{type:'spa'}:true).length }}</span>
+      </li>
+      <li><a href="service/photographer">{{ msg.photographer | translate:lang }}</a>
+        <span class="badge" ng-show="(manager.transaction.services | filter:{type:'photographer'}:true).length">{{ (manager.transaction.services | filter:{type:'photographer'}:true).length }}</span>
+      </li>
+      <li><a href="service/spectacle">{{ msg.spectacle | translate:lang }}</a>
+        <span class="badge" ng-show="(manager.transaction.services | filter:{type:'spectacle'}:true).length">{{ (manager.transaction.services | filter:{type:'spectacle'}:true).length }}</span>
+      </li>
+      <li><a href="service/sports">{{ msg.sports | translate:lang }}</a>
+        <span class="badge" ng-show="(manager.transaction.services | filter:{type:'sports'}:true).length">{{ (manager.transaction.services | filter:{type:'sports'}:true).length }}</span>
+      </li>
+      <li><a href="service/shop">{{ msg.shop | translate:lang }}</a>
+        <span class="badge" ng-show="(manager.transaction.services | filter:{type:'shop'}:true).length">{{ (manager.transaction.services | filter:{type:'shop'}:true).length }}</span>
+      </li>
       <li><a href="service/skiRental">{{ msg.skiRental | translate:lang }}</a>
         <span class="badge" ng-show="(manager.transaction.services | filter:{type:'skiRental'}:true).length">{{ (manager.transaction.services | filter:{type:'skiRental'}:true).length }}</span>
       </li>
@@ -138,6 +168,10 @@
       <li><a href="service/skiInstructor">{{ msg.skiInstructor | translate:lang }}</a>
         <span class="badge" ng-show="(manager.transaction.services | filter:{type:'skiInstructor'}:true).length">{{ (manager.transaction.services | filter:{type:'skiInstructor'}:true).length }}</span>
       </li>
+      <li><a href="service/skiInsurance">{{ msg.skiInsurance | translate:lang }}</a>
+        <span class="badge" ng-show="(manager.transaction.services | filter:{type:'skiInsurance'}:true).length">{{ (manager.transaction.services | filter:{type:'skiInsurance'}:true).length }}</span>
+      </li>
+      
     </ul>
   </div>
 
