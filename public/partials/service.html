@@ -1,4 +1,4 @@
-<div class="col-md-9">
+<div>
 
   <h2>
     {{ msg[type] | translate:lang }}
@@ -14,35 +14,41 @@
 
   <div ng-include="templateType"></div>
 
-</div>
+  <!-- comments -->
+  <div class="row">
+  
+    <div class="col-md-6">    
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <button type="button" class="btn btn-default btn-sm" ng-click="editComment('commentProduction')"><span class="glyphicon glyphicon-pencil"></span></button>
+            {{ msg.commentProduction | translate:lang }}
+          </h3>
+        </div>
+        <div class="panel-body">
+          <span ng-hide="manager.transaction[type].commentProduction">{{ msg.noComment | translate:lang }}</span>
+          <i ng-show="manager.transaction[type].commentProduction">{{ manager.transaction[type].commentProduction }}</i>
+        </div>
+      </div>
+    </div>
 
-<div class="col-md-3">
-  <br>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">
-        <button type="button" class="btn btn-default btn-sm" ng-click="editComment('commentProduction')"><span class="glyphicon glyphicon-pencil"></span></button>
-        {{ msg.commentProduction | translate:lang }}
-      </h3>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <button type="button" class="btn btn-default btn-sm" ng-click="editComment('commentResort')"><span class="glyphicon glyphicon-pencil"></span></button>
+            {{ msg.commentResort | translate:lang }}
+          </h3>
+        </div>
+        <div class="panel-body">
+          <span ng-hide="manager.transaction[type].commentResort">{{ msg.noComment | translate:lang }}</span>
+          <i ng-show="manager.transaction[type].commentResort">{{ manager.transaction[type].commentResort }}</i>
+        </div>
+      </div>
     </div>
-    <div class="panel-body">
-      <p ng-hide="manager.transaction[type].commentProduction">{{ msg.noComment | translate:lang }}</p>
-      <i ng-show="manager.transaction[type].commentProduction">{{ manager.transaction[type].commentProduction }}</i>
-    </div>
-  </div>
+    
+  </div><!-- comments -->
 
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">
-        <button type="button" class="btn btn-default btn-sm" ng-click="editComment('commentResort')"><span class="glyphicon glyphicon-pencil"></span></button>
-        {{ msg.commentResort | translate:lang }}
-      </h3>
-    </div>
-    <div class="panel-body">
-      <p ng-hide="manager.transaction[type].commentResort">{{ msg.noComment | translate:lang }}</p>
-      <i ng-show="manager.transaction[type].commentResort">{{ manager.transaction[type].commentResort }}</i>
-    </div>
-  </div>
 </div>
 
 <div ng-include src="template"></div>

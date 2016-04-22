@@ -12,12 +12,12 @@
   </div>
 </div>
 
-<div class="form-group" ng-class="{'has-error': formLine.arrivalDate.$invalid}">
-  <label for="arrivalDate" class="col-sm-4 control-label">{{ msg.arrivalDate | translate:lang }}</label>
+<div class="form-group" ng-class="{'has-error': formLine.date.$invalid}">
+  <label for="date" class="col-sm-4 control-label">{{ msg.arrivalDate | translate:lang }}</label>
   <div class="col-sm-8">
     <div class="input-group">
-      <input type="date" class="form-control" name="arrivalDate" ng-model="line.arrivalDate" placeholder="{{ msg.formatDate | translate:lang }}" required>
-      <div data-date-picker data-model="line.arrivalDate" data-lang="{{ lang }}" data-msg="msg"></div>
+      <input type="date" class="form-control" name="date" ng-model="line.date" placeholder="{{ msg.formatDate | translate:lang }}" required>
+      <div data-date-picker data-model="line.date" data-lang="{{ lang }}" data-msg="msg"></div>
     </div>
   </div>
 </div>
@@ -40,9 +40,9 @@
   <label for="payment" class="col-sm-4 control-label">{{ msg.payment | translate:lang }}</label>
   <div class="col-sm-8">
     <select class="form-control" name="payment" ng-model="line.payment" required>
-      <option>{{ msg.paymentClubmed | translate:lang }}</option>
-      <option>{{ msg.paymentResort | translate:lang }}</option>
-      <option>{{ msg.paymentCustomer | translate:lang }}</option>
+      <option value="paymentClubmed">{{ msg.paymentClubmed | translate:lang }}</option>
+      <option value="paymentResort">{{ msg.paymentResort | translate:lang }}</option>
+      <option value="paymentCustomer">{{ msg.paymentCustomer | translate:lang }}</option>
     </select>
   </div>
 </div>

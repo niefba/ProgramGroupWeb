@@ -1,0 +1,117 @@
+<div>
+
+  <h2>
+    {{ msg.contractualExtras | translate:lang }}
+    <button type="button" class="btn btn-primary pull-right" ng-click="addLine()">
+      <span class="glyphicon glyphicon-print"></span>
+      {{ msg.print | translate:lang }}
+    </button>
+  </h2>
+
+  <div class="alert alert-info" ng-hide="(manager.transaction.services | filter:{payment:'paymentCustomer'}:true).length">
+    {{ msg.noLine | translate:lang }}
+  </div>
+  
+  <div class="alert alert-warning" ng-show="(manager.transaction.services | filter:{payment:'paymentCustomer'}:true).length">
+    {{ msg.tableToBeCompleted | translate:lang }}
+  </div>
+
+  <table class="table table-condensed" ng-show="(manager.transaction.services | filter:{payment:'paymentCustomer'}:true).length">
+    <thead>
+      <tr>
+        <th colspan="6" class="no-border"></th>
+        <th class="no-border text-center bg-primary" colspan="5">
+          {{ msg.completedByResort | translate:lang }}<br>
+          {{ msg.changedByResort | translate:lang }}
+        </th>
+      </tr>
+      <tr>
+        <th class="no-border text-center bg-primary" colspan="5">{{ msg.completedByClubmed | translate:lang }}</th>
+        <th class="no-border"></th>
+        <td class="no-border info" colspan="5">
+          <form class="form-horizontal" name="formLine">
+            <div class="form-group-sm" ng-class="{'has-error': formLine.monthlyRate.$invalid}">
+              <div class="col-sm-8">
+                <label class="control-label" for="monthlyRate">{{ msg.monthlyRate | translate:lang}}</label>
+              </div>
+              <div class="col-sm-4 input-group input-group-sm">
+                <input type="number" class="form-control" name="monthlyRate" ng-model="monthlyRate" ng-pattern="/^[0-9\.]*$/" required>
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-floppy-disk"></span></button>
+                </span>
+              </div>
+            </div>
+          </form>
+        </td>
+      </tr>
+      <tr>
+        <th>{{ msg.date | translate:lang }}</th>
+        <th>{{ msg.serviceType | translate:lang }}</th>
+        <th class="text-right">{{ msg.quantity | translate:lang }}</th>
+        <th class="text-right">{{ msg.retailPriceTTC | translate:lang }}</th>
+        <th class="text-right">{{ msg.totalTTC | translate:lang }}</th>
+        <th></th>
+        <th class="text-right">{{ msg.quantity | translate:lang }}</th>
+        <th class="text-right">{{ msg.retailPriceTTC | translate:lang }}</th>
+        <th class="text-right">{{ msg.totalTTC | translate:lang }}</th>
+        <th class="text-right">{{ msg.totalTTCLocal | translate:lang }}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat-start="line in manager.transaction.services | filter:{payment:'paymentCustomer'}:true track by $index" title="{{ msg[line.type] | translate:lang }}">
+        <!--  completedByClubmed -->
+        <th>
+          {{ line.date | date: 'yyyy-MM-dd' }}
+          <span ng-show="line.dateTo">{{ msg.to | translate:lang }} {{ line.dateTo | date: 'yyyy-MM-dd' }}</span>
+        </th>
+        <td>
+          {{ line.serviceType }}
+          <span ng-hide="line.serviceType">{{ msg[line.type] | translate:lang }}</span>
+        </td>
+        <td class="text-right">
+          <span ng-hide="line.nbDay">{{ line.quantity }}</span>
+          <span ng-show="line.nbDay">{{ line.nbDay }} x {{ line.quantity }}</span>
+        </td>
+        <td class="text-right">{{ line.price }} {{ devise }}</td>
+        <td class="text-right">
+          <span ng-hide="line.nbDay">{{ line.quantity * line.price  }} {{ devise }}</span>
+          <span ng-show="line.nbDay">{{ line.nbDay * line.quantity * line.price  }} {{ devise }}</span>
+        </td>
+        <td>
+          <button type="button" class="btn btn-default btn-sm" ng-click="copyToResort(line)"><span class="glyphicon glyphicon-copy"></span></button>
+        </td><!--  completedByClubmed -->
+
+        <!--  completedByResort -->
+        <td class="text-right">
+          <span ng-show="line.quantityResort">{{ line.quantityResort }}</span>
+        </td>
+        <td class="text-right">
+          <span ng-show="line.priceResort">{{ line.priceResort }} {{ devise }}</span>
+        </td>
+        <td class="text-right">
+          <span ng-show="line.quantityResort && line.priceResort">{{ line.quantityResort * line.priceResort  }} {{ devise }}</span>
+        </td>
+        <td class="text-right">
+          <span ng-show="line.quantityResort && line.priceResort">{{ line.quantityResort * line.priceResort  }} {{ devise }}</span>
+        </td>
+        <td>
+          <button type="button" class="btn btn-default btn-sm" ng-click="editLine(line)"><span class="glyphicon glyphicon-pencil"></span></button>
+        </td><!--  completedByResort -->
+      </tr>
+      <tr ng-repeat-end ng-show="line.commentResort"><td colspan="7"></td><td colspan="5"><small><i>{{ line.commentResort }}</i></small></td></tr>
+      </tr>
+      <tr class="bg-primary">
+        <td class="text-left" colspan="4"><strong>TOTAL</strong></td>
+        <td class="text-right"><strong>{{total}} {{ devise }}</strong></td>
+        <td class="text-right" colspan="3"></td>
+        <td class="text-right"><strong ng-show="totalResort">{{totalResort}} {{ devise }}</strong></td>
+        <td class="text-right"><strong ng-show="totalResortLocal">{{totalResortLocal}}</strong></td>
+        <td class="text-right" colspan="2"></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<div ng-include src="template"></div>

@@ -16,14 +16,14 @@
   <tbody>
     <tr ng-repeat-start="line in manager.transaction.services | filter:{type:type}:true track by $index">
       <th>{{ line.date | date: 'yyyy-MM-dd' }}</th>
-      <td>{{ line.room }}</td>
+      <td>{{ line.serviceType }}</td>
       <td>{{ line.hourFrom }} {{ msg.hourTo | translate:lang }} {{ line.hourTo }}</td>
       <td>{{ msg[line.basicEquipment] | translate:lang }}</td>
       <td>{{ msg[line.arrangement] | translate:lang }}</td>
       <td class="text-right">{{ line.nbPerson }}</td>
       <td class="text-right">{{ line.quantity }}</td>
       <td class="text-right">{{ line.price }} {{ devise }}</td>
-      <td class="text-center">{{ line.payment }}</td>
+      <td class="text-center">{{ msg[line.payment] | translate:lang }}</td>
       <td>
         <div class="btn-group pull-right">
           <button type="button" class="btn btn-default btn-sm" ng-click="editLine(line)"><span class="glyphicon glyphicon-pencil"></span></button>

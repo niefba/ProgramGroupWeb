@@ -23,6 +23,10 @@ programGroupApp.config(['$routeProvider', '$locationProvider',
         templateUrl: 'partials/service.html',
         controller: 'ServiceCtrl'
       }).
+      when('/contractualExtras', {
+        templateUrl: 'partials/service-contractualExtras.html',
+        controller: 'ContractualExtrasCtrl'
+      }).
       otherwise({
         redirectTo: '/'
       });

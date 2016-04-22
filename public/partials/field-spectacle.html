@@ -47,9 +47,9 @@
   <label for="payment" class="col-sm-4 control-label">{{ msg.payment | translate:lang }}</label>
   <div class="col-sm-8">
     <select class="form-control" name="payment" ng-model="line.payment" required>
-      <option>{{ msg.paymentClubmed | translate:lang }}</option>
-      <option>{{ msg.paymentResort | translate:lang }}</option>
-      <option>{{ msg.paymentCustomer | translate:lang }}</option>
+      <option value="paymentClubmed">{{ msg.paymentClubmed | translate:lang }}</option>
+      <option value="paymentResort">{{ msg.paymentResort | translate:lang }}</option>
+      <option value="paymentCustomer">{{ msg.paymentCustomer | translate:lang }}</option>
     </select>
   </div>
 </div>

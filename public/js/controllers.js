@@ -53,6 +53,69 @@ programGroupControllers.controller('AppCtrl', ['$scope', '$filter',  '$routePara
   }]);
 
  /**
+ * Contractual Extras Ctrl used by service-contractualExtras.html
+ */
+programGroupControllers.controller('ContractualExtrasCtrl', ['$scope', 'filterFilter', 'Manager',
+  function ($scope, filterFilter, Manager) {
+
+    $scope.closeTemplate = function () {
+      $scope.template = '';
+    }
+
+    $scope.copyToResort = function (line) {
+      $scope.line = line;
+      if (line.type == 'skiRental' || line.type == 'skiBootRental') {
+        $scope.line.quantityResort = $scope.line.quantity * $scope.line.nbDay;
+      }
+      else {
+        $scope.line.quantityResort = $scope.line.quantity;
+      }
+      $scope.line.priceResort = $scope.line.price;
+      Manager.saveTransaction($scope.manager.transaction);
+      $scope.calculTotal();
+    }
+
+    $scope.editLine = function (line) {
+      $scope.servicesCopy = angular.copy($scope.manager.transaction.services);
+      $scope.line = line;
+      $scope.template = '/partials/form-contractualExtras.html';
+    }
+
+    $scope.cancelLine = function () {
+      $scope.manager.transaction.services = $scope.servicesCopy;
+      $scope.closeTemplate();
+    }
+
+    $scope.saveLine = function (line) {
+      Manager.saveTransaction($scope.manager.transaction);
+      $scope.calculTotal();
+      $scope.closeTemplate();
+    }
+
+    $scope.calculTotal = function () {
+      $scope.total = 0;
+      $scope.totalResort = 0;
+      angular.forEach(filterFilter($scope.manager.transaction.services, {payment:'paymentCustomer'},true), function(value, key) {
+        // Total for skiRental, skiBootRental
+        if (value.type == 'skiRental' || value.type == 'skiBootRental') {
+          $scope.total += (value.nbDay * value.price * value.quantity); 
+          if (value.quantityResort && value.priceResort ) {
+            $scope.totalResort += (value.priceResort * value.quantityResort); 
+          }
+        }
+        else {
+          $scope.total += (value.price * value.quantity);
+          if (value.quantityResort && value.priceResort) {
+            $scope.totalResort += (value.priceResort * value.quantityResort);
+          }
+        }
+      });
+    }
+    $scope.calculTotal();
+
+  }]);
+
+ /**
  * Service Ctrl used by service.html
  */
 programGroupControllers.controller('ServiceCtrl', ['$scope', '$routeParams', 'filterFilter', 'Manager',
@@ -99,9 +162,6 @@ programGroupControllers.controller('ServiceCtrl', ['$scope', '$routeParams', 'fi
       if (line.dateTo) {
         $scope.line.dateTo = new Date(line.dateTo);
       }
-      if (line.arrivalDate) {
-        $scope.line.arrivalDate = new Date(line.arrivalDate);
-      }
       $scope.template = '/partials/form-service.html';
     }
 
@@ -142,7 +202,7 @@ programGroupControllers.controller('ServiceCtrl', ['$scope', '$routeParams', 'fi
 
     $scope.calculTotal = function () {
       $scope.total = 0;
-      angular.forEach(filterFilter($scope.manager.transaction.services, {type:$scope.type}), function(value, key) {
+      angular.forEach(filterFilter($scope.manager.transaction.services, {type:$scope.type},true), function(value, key) {
         // Total for skiRental, skiBootRental
         if ($scope.type == 'skiRental' || $scope.type == 'skiBootRental') {
           $scope.total += (value.nbDay * value.price * value.quantity);  

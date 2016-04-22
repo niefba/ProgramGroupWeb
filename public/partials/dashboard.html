@@ -46,29 +46,6 @@
     </dl>
   </div>
 
-  <!--
-  "eventPersonalization" : {"fr": "Personnalisation Evénementielle", "en": "Event Personalization"},
-  "vipOffered"           : {"fr": "VIP offert", "en": "VIP welcome offered"},
-  "vip"                  : {"fr": "VIP", "en": "VIP paying welcome"},
-  "gift"                 : {"fr": "Cadeau", "en": "Gift"},
-  "arrivalNoTransfer"    : {"fr": "Arrivée sans transfert", "en": "Arrival with no transfers"},
-  "departNoTransfer"     : {"fr": "Départ sans transfert", "en": "Departure with no transfer"},
-  "transferArrival"      : {"fr": "Transfert Arrivée", "en": "Transfer on arrival"},
-  "transfertDepart"      : {"fr": "Transfert Départ", "en": "Transfer on departure"},
-  "coffeeBreaks"         : {"fr": "Pauses", "en": "Coffee Breaks"},
-  "cocktails"            : {"fr": "Cocktails", "en": "Cocktails"},
-  "restaurantIncluded"   : {"fr": "Restaurant SF", "en": "Restaurant included"},
-  "restaurantExtra"      : {"fr": "Restaurant AF", "en": "Restaurant with extra fees"},
-  "additionalMeals"      : {"fr": "Repas supplémentaires", "en": "Additional meals"},
-  "conferenceRooms"      : {"fr": "Salles", "en": "Conference rooms"},
-  "basicEquipment"       : {"fr": "Matériel base", "en": "Basic equipment"},
-  "rentalEquipment"      : {"fr": "Matériel location", "en": "Rental equipment"},
-  "discovery"            : {"fr": "Espace Découverte", "en": "Discovery"},
-  "otherServices"        : {"fr": "Prestations diverses", "en": "Other services"},
-  "skiRental"            : {"fr": "Location de skis", "en": "Ski rental"},
-  "skiBootRental"        : {"fr": "Location de chaussures", "en": "Ski boot rental"},
-  "skiInstructor"        : {"fr": "Moniteur", "en": "Ski instructor"},
-  -->
   <div class="col-md-3" ng-hide="manager.transaction.error">
     <h2>{{ msg.services | translate:lang }}</h2>
     <ul class="list-unstyled">
@@ -215,7 +192,10 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <ul class="list-unstyled">
-          <li><a href="javascript:void(0)">{{ msg.contractualExtras | translate:lang }}</a></li>
+          <li>
+            <a href="contractualExtras">{{ msg.contractualExtras | translate:lang }}</a>
+            <span class="badge" ng-show="(manager.transaction.services | filter:{payment:'paymentCustomer'}:true).length">{{ (manager.transaction.services | filter:{payment:'paymentCustomer'}:true).length }}</span>
+          </li>
           <li><a href="javascript:void(0)">{{ msg.nonContractualExtras | translate:lang }}</a></li>
           <li><a href="javascript:void(0)">{{ msg.clubMedExtras | translate:lang }}</a></li>
           <li><a href="javascript:void(0)">{{ msg.planningReport | translate:lang }}</a></li>
@@ -224,73 +204,6 @@
     </div>
 
   </div>
-  <!--div class="col-md-5" ng-hide="manager.transaction.error">
-    <h2>{{ msg.services | translate:lang }}</h2>
-    <button type="button" class="btn btn-default btn-block btn-primary">
-      {{ msg.eventPersonalization | translate:lang }}
-      <span class="badge">4</span>
-    </button>
-    <button type="button" class="btn btn-default btn-block">
-      {{ msg.vipOffered | translate:lang }}
-    </button>
-    <button type="button" class="btn btn-default btn-block">
-      {{ msg.vip | translate:lang }}
-    </button>
-    <button type="button" class="btn btn-default btn-block">
-      {{ msg.gift | translate:lang }}
-    </button>
-    <button type="button" class="btn btn-default btn-block">
-      {{ msg.arrivalNoTransfer | translate:lang }}
-    </button>
-    <button type="button" class="btn btn-default btn-block">
-      {{ msg.departNoTransfer | translate:lang }}
-    </button>
-    <button type="button" class="btn btn-default btn-block">
-      {{ msg.transferArrival | translate:lang }}
-    </button>
-    <button type="button" class="btn btn-default btn-block">
-      {{ msg.transfertDepart | translate:lang }}
-    </button>
-    <button type="button" class="btn btn-default btn-block">
-      {{ msg.coffeeBreaks | translate:lang }}
-    </button>
-    <button type="button" class="btn btn-default btn-block">
-      {{ msg.cocktails | translate:lang }}
-    </button>
-    <button type="button" class="btn btn-default btn-block">
-      {{ msg.restaurantIncluded | translate:lang }}
-    </button>
-    <button type="button" class="btn btn-default btn-block">
-      {{ msg.additionalMeals | translate:lang }}
-    </button>
-    <button type="button" class="btn btn-default btn-block">
-      {{ msg.restaurantExtra | translate:lang }}
-    </button>
-    <button type="button" class="btn btn-default btn-block">
-      {{ msg.conferenceRooms | translate:lang }}
-    </button>
-    <button type="button" class="btn btn-default btn-block">
-      {{ msg.basicEquipment | translate:lang }}
-    </button>
-    <button type="button" class="btn btn-default btn-block">
-      {{ msg.rentalEquipment | translate:lang }}
-    </button>
-    <button type="button" class="btn btn-default btn-block">
-      {{ msg.discovery | translate:lang }}
-    </button>
-    <button type="button" class="btn btn-default btn-block">
-      {{ msg.otherServices | translate:lang }}
-    </button>
-    <button type="button" class="btn btn-default btn-block">
-      {{ msg.skiRental | translate:lang }}
-    </button>
-    <button type="button" class="btn btn-default btn-block">
-      {{ msg.skiBootRental | translate:lang }}
-    </button>
-    <button type="button" class="btn btn-default btn-block">
-      {{ msg.skiInstructor | translate:lang }}
-    </button>
-  </div-->
 
   <div ng-include src="template"></div>
 

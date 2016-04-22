@@ -50,10 +50,10 @@
   </div>
 </div>
 
-<div class="form-group"  ng-class="{'has-error': formLine.nbBusTaxi.$invalid}">
-  <label for="nbBusTaxi" class="col-sm-4 control-label">{{ msg.nbBusTaxi | translate:lang }}</label>
+<div class="form-group"  ng-class="{'has-error': formLine.quantity.$invalid}">
+  <label for="quantity" class="col-sm-4 control-label">{{ msg.nbBusTaxi | translate:lang }}</label>
   <div class="col-sm-8">
-    <input type="number" class="form-control" name="nbBusTaxi" ng-model="line.nbBusTaxi" placeholder="{{ msg.nbBusTaxi | translate:lang }}" ng-pattern="/^[0-9]*$/" required>
+    <input type="number" class="form-control" name="quantity" ng-model="line.quantity" placeholder="{{ msg.nbBusTaxi | translate:lang }}" ng-pattern="/^[0-9]*$/" required>
   </div>
 </div>
 
@@ -82,9 +82,9 @@
   <label for="payment" class="col-sm-4 control-label">{{ msg.payment | translate:lang }}</label>
   <div class="col-sm-8">
     <select class="form-control" name="payment" ng-model="line.payment" required>
-      <option>{{ msg.paymentClubmed | translate:lang }}</option>
-      <option>{{ msg.paymentResort | translate:lang }}</option>
-      <option>{{ msg.paymentCustomer | translate:lang }}</option>
+      <option value="paymentClubmed">{{ msg.paymentClubmed | translate:lang }}</option>
+      <option value="paymentResort">{{ msg.paymentResort | translate:lang }}</option>
+      <option value="paymentCustomer">{{ msg.paymentCustomer | translate:lang }}</option>
     </select>
   </div>
 </div>
