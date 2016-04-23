@@ -195,6 +195,7 @@
           <li>
             <a href="contractualExtras">{{ msg.contractualExtras | translate:lang }}</a>
             <span class="badge" ng-show="(manager.transaction.services | filter:{payment:'paymentCustomer'}:true).length">{{ (manager.transaction.services | filter:{payment:'paymentCustomer'}:true).length }}</span>
+            <span class="label label-info">{{ (manager.transaction.services | filter:{payment:'paymentCustomer', quantityResort:''}:true).length }}</span>
           </li>
           <li><a href="javascript:void(0)">{{ msg.nonContractualExtras | translate:lang }}</a></li>
           <li><a href="javascript:void(0)">{{ msg.clubMedExtras | translate:lang }}</a></li>

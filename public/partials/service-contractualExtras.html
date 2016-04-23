@@ -35,9 +35,11 @@
                 <label class="control-label" for="monthlyRate">{{ msg.monthlyRate | translate:lang}}</label>
               </div>
               <div class="col-sm-4 input-group input-group-sm">
-                <input type="number" class="form-control" name="monthlyRate" ng-model="monthlyRate" ng-pattern="/^[0-9\.]*$/" required>
+                <input type="number" class="form-control" name="monthlyRate" ng-model="monthlyRate" ng-init="monthlyRate = manager.transaction.monthlyRate" ng-pattern="/^[0-9\.]*$/" required>
                 <span class="input-group-btn">
-                  <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-floppy-disk"></span></button>
+                  <button class="btn btn-default" type="button" ng-click="saveMonthlyRate(monthlyRate)">
+                    <span ng-class="{false: 'glyphicon glyphicon-floppy-disk', true: 'glyphicon glyphicon-floppy-saved'}[manager.transaction.monthlyRate == monthlyRate]"></span>
+                  </button>
                 </span>
               </div>
             </div>
@@ -93,7 +95,7 @@
           <span ng-show="line.quantityResort && line.priceResort">{{ line.quantityResort * line.priceResort  }} {{ devise }}</span>
         </td>
         <td class="text-right">
-          <span ng-show="line.quantityResort && line.priceResort">{{ line.quantityResort * line.priceResort  }} {{ devise }}</span>
+          <span ng-show="line.quantityResort && line.priceResort">{{ line.quantityResort * line.priceResort * manager.transaction.monthlyRate  | number: 2 }}</span>
         </td>
         <td>
           <button type="button" class="btn btn-default btn-sm" ng-click="editLine(line)"><span class="glyphicon glyphicon-pencil"></span></button>
@@ -103,10 +105,10 @@
       </tr>
       <tr class="bg-primary">
         <td class="text-left" colspan="4"><strong>TOTAL</strong></td>
-        <td class="text-right"><strong>{{total}} {{ devise }}</strong></td>
+        <td class="text-right"><strong>{{ total }} {{ devise }}</strong></td>
         <td class="text-right" colspan="3"></td>
-        <td class="text-right"><strong ng-show="totalResort">{{totalResort}} {{ devise }}</strong></td>
-        <td class="text-right"><strong ng-show="totalResortLocal">{{totalResortLocal}}</strong></td>
+        <td class="text-right"><strong ng-show="totalResort">{{ totalResort }} {{ devise }}</strong></td>
+        <td class="text-right"><strong ng-show="totalResort">{{ (totalResort * manager.transaction.monthlyRate)  | number: 2}}</strong></td>
         <td class="text-right" colspan="2"></td>
       </tr>
     </tbody>

@@ -62,6 +62,11 @@ programGroupControllers.controller('ContractualExtrasCtrl', ['$scope', 'filterFi
       $scope.template = '';
     }
 
+    $scope.saveMonthlyRate = function (monthlyRate) {
+      $scope.manager.transaction.monthlyRate = monthlyRate;
+      Manager.saveTransaction($scope.manager.transaction);
+    }
+
     $scope.copyToResort = function (line) {
       $scope.line = line;
       if (line.type == 'skiRental' || line.type == 'skiBootRental') {

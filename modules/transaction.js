@@ -21,6 +21,7 @@ var Transaction = ottoman.model('Transaction', {
   remarks: 'string',
   companyActivity: 'string',
   aimOfMeeting: 'string',
+  monthlyRate: {type: 'number', default: 1},
   leaders: [{
     leaderName: 'string',
     leaderFunction: 'string'
