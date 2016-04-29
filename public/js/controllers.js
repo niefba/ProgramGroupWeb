@@ -6,8 +6,8 @@ var programGroupControllers = angular.module('programGroupControllers', []);
  /**
  * App ctrl
  */
-programGroupControllers.controller('AppCtrl', ['$scope', '$filter',  '$routeParams', 'Manager', 'Translation', '$location',
-  function ($scope, $filter, $routeParams, Manager, Translation, $location) {
+programGroupControllers.controller('AppCtrl', ['$scope', '$filter',  '$routeParams', 'Manager', 'Translation', '$location', '$window',
+  function ($scope, $filter, $routeParams, Manager, Translation, $location, $window) {
 
     if ($routeParams.key) {
       Manager.init($routeParams.key);
@@ -15,11 +15,14 @@ programGroupControllers.controller('AppCtrl', ['$scope', '$filter',  '$routePara
     $scope.manager = Manager.get();
     $scope.location = $location;
     $scope.msg = Translation.getMsg();
-    $scope.ref = Translation.getRef();
     $scope.devise = '€';
 
     $scope.closeTemplate = function () {
       $scope.template = '';
+    }
+
+    $scope.print = function () {
+      $window.print();
     }
     
     $scope.editTransaction = function () {
@@ -49,6 +52,11 @@ programGroupControllers.controller('AppCtrl', ['$scope', '$filter',  '$routePara
     $scope.saveTransaction = function (transaction) {
       Manager.saveTransaction(transaction);
       $scope.closeTemplate();
+    }
+
+    // Filter payment customer completed by resort
+    $scope.paymentCustomerResort = function (item) {
+      return (item.payment == 'paymentCustomer' && item.quantityResort >=0);
     }
   }]);
 

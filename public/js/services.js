@@ -63,28 +63,6 @@ angular.module('app.services', [], function($provide) {
    * Translation
    */
   $provide.factory('Translation', ['$rootScope', function($rootScope) {
-    var ref = {
-      "companyActivity" : [
-         {"fr": "Agence de voyage", "en": "Travel agency"},
-         {"fr": "Industrie", "en": "Industry"},
-      ],
-      "aimOfMeeting" :  [
-         {"fr": "Challenge", "en": "Challenge"},
-         {"fr": "Détente", "en": "Relaxation"},
-         {"fr": "Séminaire de travail", "en": "Seminar work"},
-         {"fr": "Récompense", "en": "Reward"},
-         {"fr": "Fédérer les équipes", "en": "Unite teams"},
-         {"fr": "Voyage clients", "en": "Customers travel"},
-         {"fr": "Lancement de produit", "en": "Product launch"},
-         {"fr": "Convention", "en": "Convention"},
-         {"fr": "Formation", "en": "Training"},
-         {"fr": "Team building", "en": "Team building"},
-      ],
-      "leaderFunction" : [
-         {"fr": "Directeur", "en": "CEO"},
-         {"fr": "Manager", "en": "Manager"},
-      ],
-    }
     var msg = {
       "1"  : {"fr": "Jan.", "en": "Jan."},
       "2"  : {"fr": "Fév.", "en": "Feb."},
@@ -117,6 +95,7 @@ angular.module('app.services', [], function($provide) {
       "french"                : {"fr": "Français", "en": "French"},
       "english"               : {"fr": "Anglais", "en": "English"},
       "total"               : {"fr": "Total", "en": "Total"},
+      "other" : {"fr": "Autre", "en": "Other"},
 
       // Radio Origin
       "radioShop" : {"fr": "Boutique", "en": "Shop"},
@@ -150,6 +129,26 @@ angular.module('app.services', [], function($provide) {
       "paymentClubmed"               : {"fr": "M&E", "en": "M&E"},
       "paymentCustomer"               : {"fr": "Client", "en": "Customer"},
       "paymentResort"               : {"fr": "Village", "en": "Resort"},
+
+      // Select companyActivity
+      "companyActivityTravelAgency" : {"fr": "Agence de voyage", "en": "Travel agency"},
+      "companyActivityIndustry" :  {"fr": "Industrie", "en": "Industry"},
+
+      // Select aimOfMeeting
+      "aimOfMeetingChallenge" :  {"fr": "Challenge", "en": "Challenge"},
+      "aimOfMeetingRelaxation" : {"fr": "Détente", "en": "Relaxation"},
+      "aimOfMeetingSeminar" : {"fr": "Séminaire de travail", "en": "Seminar work"},
+      "aimOfMeetingReward" : {"fr": "Récompense", "en": "Reward"},
+      "aimOfMeetingUniteTeams" : {"fr": "Fédérer les équipes", "en": "Unite teams"},
+      "aimOfMeetingCustomersTravel" : {"fr": "Voyage clients", "en": "Customers travel"},
+      "aimOfMeetingProductLaunch" : {"fr": "Lancement de produit", "en": "Product launch"},
+      "aimOfMeetingConvention" : {"fr": "Convention", "en": "Convention"},
+      "aimOfMeetingTraining" : {"fr": "Formation", "en": "Training"},
+      "aimOfMeetingTeamBuilding" : {"fr": "Team building", "en": "Team building"},
+
+      // Select leaderFunction
+      "leaderFunctionDirector" : {"fr": "Directeur", "en": "CEO"},
+      "leaderFunctionManager" : {"fr": "Manager", "en": "Manager"},
 
       "noLine"               : {"fr": "Aucune ligne.", "en": "No line."},
       "noComment"               : {"fr": "Aucun commentaire.", "en": "No comment."},
@@ -231,6 +230,7 @@ angular.module('app.services', [], function($provide) {
       "dateTo"               : {"fr": "Départ", "en": "Departure"},
       "numbreOfPeople"       : {"fr": "Nombre de participants", "en": "No. of people"},
       "transactionNumber"    : {"fr": "N° opération", "en": "Transaction #"},
+      "transactionNumberLinked"    : {"fr": "N° opération liée", "en": "Linked transaction #"},
 
       // Services
       "eventPersonalization" : {"fr": "Personnalisation Evénementielle", "en": "Event Personalization"},
@@ -345,9 +345,6 @@ angular.module('app.services', [], function($provide) {
     var TranslationFactory = {
       getMsg : function () {
         return msg;
-      },
-      getRef : function () {
-        return ref;
       },
     }
     return TranslationFactory;

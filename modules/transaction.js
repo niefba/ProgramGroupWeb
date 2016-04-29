@@ -6,6 +6,7 @@ ottoman.bucket = cluster.openBucket('default');
 
 var Transaction = ottoman.model('Transaction', {
   number: {type:'string', readonly:true},
+  numberLinked: 'string',
   resort: 'string',
   salePerson: 'string',
   eventManager: 'string',
@@ -20,11 +21,14 @@ var Transaction = ottoman.model('Transaction', {
   resortManager: 'string',
   remarks: 'string',
   companyActivity: 'string',
+  companyActivityOther: 'string',
   aimOfMeeting: 'string',
+  aimOfMeetingOther: 'string',
   monthlyRate: {type: 'number', default: 1},
   leaders: [{
     leaderName: 'string',
-    leaderFunction: 'string'
+    leaderFunction: 'string',
+    leaderFunctionOther: 'string'
   }],
   services: [{
     type: 'string',

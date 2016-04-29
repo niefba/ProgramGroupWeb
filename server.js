@@ -62,7 +62,6 @@ app.get('/data', function(req, res){
             company: data.company,
             dateFrom: data.dateFrom,
             dateTo: data.dateTo,
-            nbPaxInit: Number(data.nbPaxInit),
             nbPaxRealNa: Number(data.nbPaxRealNa),
             services: [],
             comments: []

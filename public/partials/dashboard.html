@@ -33,16 +33,26 @@
     	<dt ng-show="manager.transaction.eventManager">{{ msg.eventManager | translate:lang }}</dt><dd>{{ manager.transaction.eventManager }}</dd>
     	<dt ng-show="manager.transaction.company">{{ msg.company | translate:lang }}</dt><dd>{{ manager.transaction.company }}</dd>
       <dt ng-show="manager.transaction.remarks">{{ msg.remarks | translate:lang }}</dt><dd>{{ manager.transaction.remarks }}</dd>
-      <dt ng-show="manager.transaction.companyActivity">{{ msg.companyActivity | translate:lang }}</dt><dd>{{ manager.transaction.companyActivity }}</dd>
-      <dt ng-show="manager.transaction.aimOfMeeting">{{ msg.aimOfMeeting | translate:lang }}</dt><dd>{{ manager.transaction.aimOfMeeting }}</dd>
-      <dt ng-show="manager.transaction.leader">{{ msg.leader | translate:lang }}</dt><dd>{{ manager.transaction.leader }}</dd>
-      <dt ng-show="manager.transaction.leaderFunction">{{ msg.leaderFunction | translate:lang }}</dt><dd>{{ manager.transaction.leaderFunction }}</dd>
+      <dt ng-show="manager.transaction.companyActivity">{{ msg.companyActivity | translate:lang }}</dt>
+      <dd ng-hide="manager.transaction.companyActivity == 'other'">{{ msg[manager.transaction.companyActivity] | translate:lang }}</dd>
+      <dd ng-show="manager.transaction.companyActivity == 'other'">{{ manager.transaction.companyActivityOther }}</dd>
+      <dt ng-show="manager.transaction.aimOfMeeting">{{ msg.aimOfMeeting | translate:lang }}</dt>
+      <dd ng-hide="manager.transaction.aimOfMeeting == 'other'">{{ msg[manager.transaction.aimOfMeeting] | translate:lang }}</dd>
+      <dd ng-show="manager.transaction.aimOfMeeting == 'other'">{{ manager.transaction.aimOfMeetingOther }}</dd>
+      <div ng-repeat="leader in manager.transaction.leaders">
+        <dt>{{ msg.leaderName | translate:lang }}</dt><dd>{{ leader.leaderName }}</dd>
+        <dt>{{ msg.leaderFunction | translate:lang }}</dt>
+        <dd ng-hide="leader.leaderFunction == 'other'">{{ msg[leader.leaderFunction] | translate:lang }}</dd>
+        <dd ng-show="leader.leaderFunction == 'other'">{{ leader.leaderFunctionOther }}</dd>
+      </div>
     	<dt ng-show="manager.transaction.dateFrom">{{ msg.dates | translate:lang }}</dt>
       <dd ng-show="manager.transaction.dateFrom">{{ msg.from | translate:lang }} {{ manager.transaction.dateFrom | date: 'yyyy-MM-dd' }} {{ msg.to | translate:lang }} {{ manager.transaction.dateTo | date: 'yyyy-MM-dd' }}</dd>
     	<dt ng-show="manager.transaction.nbPaxRealNa">{{ msg.numbreOfPeople | translate:lang }}</dt>
       <dd ng-show="manager.transaction.nbPaxRealNa">{{ manager.transaction.nbPaxRealNa }}</dd>
       <dt>{{ msg.transactionNumber | translate:lang }}</dt>
       <dd>{{ manager.transaction.number }}</dd>
+      <dt ng-show="manager.transaction.numberLinked">{{ msg.transactionNumberLinked | translate:lang }}</dt>
+      <dd ng-show="manager.transaction.numberLinked">{{ manager.transaction.numberLinked }}</dd>
     </dl>
   </div>
 
@@ -194,8 +204,8 @@
         <ul class="list-unstyled">
           <li>
             <a href="contractualExtras">{{ msg.contractualExtras | translate:lang }}</a>
-            <span class="badge" ng-show="(manager.transaction.services | filter:{payment:'paymentCustomer'}:true).length">{{ (manager.transaction.services | filter:{payment:'paymentCustomer'}:true).length }}</span>
-            <span class="label label-info">{{ (manager.transaction.services | filter:{payment:'paymentCustomer', quantityResort:''}:true).length }}</span>
+            <!--span class="badge" ng-show="(manager.transaction.services | filter:{payment:'paymentCustomer'}:true).length">{{ (manager.transaction.services | filter:{payment:'paymentCustomer'}:true).length }}</span-->
+            <span class="label label-warning">{{ (manager.transaction.services | filter:paymentCustomerResort).length }}/{{ (manager.transaction.services | filter:{payment:'paymentCustomer'}:true).length }}</span>
           </li>
           <li><a href="javascript:void(0)">{{ msg.nonContractualExtras | translate:lang }}</a></li>
           <li><a href="javascript:void(0)">{{ msg.clubMedExtras | translate:lang }}</a></li>

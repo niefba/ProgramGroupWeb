@@ -30,6 +30,11 @@ body {
 .no-border {
   border: 0 !important;
 }
+
+.print-only, .print-only *
+{
+    display: none !important;
+}
 /*
 |
 | Table

@@ -1,8 +1,10 @@
 <div>
 
+  <img src="/img/logo-meetings-events.png" class="print-only">
+
   <h2>
     {{ msg.contractualExtras | translate:lang }}
-    <button type="button" class="btn btn-primary pull-right" ng-click="addLine()">
+    <button type="button" class="btn btn-primary pull-right no-print" ng-click="print()">
       <span class="glyphicon glyphicon-print"></span>
       {{ msg.print | translate:lang }}
     </button>
@@ -16,16 +18,17 @@
     {{ msg.tableToBeCompleted | translate:lang }}
   </div>
 
+  <span class="print-only">{{ msg.monthlyRate | translate:lang}} {{ manager.transaction.monthlyRate }}</span>
   <table class="table table-condensed" ng-show="(manager.transaction.services | filter:{payment:'paymentCustomer'}:true).length">
     <thead>
-      <tr>
+      <tr class="no-print">
         <th colspan="6" class="no-border"></th>
         <th class="no-border text-center bg-primary" colspan="5">
           {{ msg.completedByResort | translate:lang }}<br>
           {{ msg.changedByResort | translate:lang }}
         </th>
       </tr>
-      <tr>
+      <tr class="no-print">
         <th class="no-border text-center bg-primary" colspan="5">{{ msg.completedByClubmed | translate:lang }}</th>
         <th class="no-border"></th>
         <td class="no-border info" colspan="5">
@@ -45,6 +48,11 @@
             </div>
           </form>
         </td>
+      </tr>
+      <tr class="print-only">
+        <th class="text-center" colspan="5">{{ msg.completedByClubmed | translate:lang }}</th>
+        <th></th>
+        <th class="text-center" colspan="5">{{ msg.changedByResort | translate:lang }}</th>
       </tr>
       <tr>
         <th>{{ msg.date | translate:lang }}</th>
@@ -81,7 +89,7 @@
           <span ng-show="line.nbDay">{{ line.nbDay * line.quantity * line.price  }} {{ devise }}</span>
         </td>
         <td>
-          <button type="button" class="btn btn-default btn-sm" ng-click="copyToResort(line)"><span class="glyphicon glyphicon-copy"></span></button>
+          <button type="button" class="btn btn-default btn-sm no-print" ng-click="copyToResort(line)"><span class="glyphicon glyphicon-copy"></span></button>
         </td><!--  completedByClubmed -->
 
         <!--  completedByResort -->
@@ -98,21 +106,37 @@
           <span ng-show="line.quantityResort && line.priceResort">{{ line.quantityResort * line.priceResort * manager.transaction.monthlyRate  | number: 2 }}</span>
         </td>
         <td>
-          <button type="button" class="btn btn-default btn-sm" ng-click="editLine(line)"><span class="glyphicon glyphicon-pencil"></span></button>
+          <button type="button" class="btn btn-default btn-sm no-print" ng-click="editLine(line)"><span class="glyphicon glyphicon-pencil"></span></button>
         </td><!--  completedByResort -->
       </tr>
       <tr ng-repeat-end ng-show="line.commentResort"><td colspan="7"></td><td colspan="5"><small><i>{{ line.commentResort }}</i></small></td></tr>
       </tr>
       <tr class="bg-primary">
-        <td class="text-left" colspan="4"><strong>TOTAL</strong></td>
-        <td class="text-right"><strong>{{ total }} {{ devise }}</strong></td>
-        <td class="text-right" colspan="3"></td>
-        <td class="text-right"><strong ng-show="totalResort">{{ totalResort }} {{ devise }}</strong></td>
+        <td class="text-left"><strong>TOTAL</strong></td>
+        <td class="text-right" colspan="4"><strong>{{ total }} {{ devise }}</strong></td>
+        <td class="text-right" colspan="4"><strong ng-show="totalResort">{{ totalResort }} {{ devise }}</strong></td>
         <td class="text-right"><strong ng-show="totalResort">{{ (totalResort * manager.transaction.monthlyRate)  | number: 2}}</strong></td>
         <td class="text-right" colspan="2"></td>
       </tr>
     </tbody>
   </table>
+
+  <div class="print-only">
+    <p>
+      {{ msg.undersigned | translate:lang }}
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      {{ msg.certifyExact | translate:lang }}
+    </p>
+    <p>
+      <span>{{ msg.date | translate:lang }}:</span>
+    </p>
+    <p>
+      <span>{{ msg.goSignature | translate:lang }}</span>
+      <span class="pull-right">{{ msg.leaderSignature | translate:lang }}</span>
+    </p>
+  </div>
 
 </div>
 
