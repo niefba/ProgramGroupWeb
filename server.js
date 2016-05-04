@@ -50,17 +50,19 @@ io.use(function(socket, next) {
   try {
     // Decode the json from an encoded string with double quote
     var decoded = require('jwt-simple').decode(socket.handshake.query.token, config.app.secret, "HS256");
+    decoded = JSON.parse(decoded);
     if (decoded.transactionNumber) {
+      /*
+      var dateToArray = decoded.dateTo.split('/');
+      decoded.dateTo = new Date(dateToArray[2], dateToArray[1], dateToArray[0]);
+      var dateFromArray = decoded.dateFrom.split('/');
+      decoded.dateFrom = new Date(dateFromArray[2], dateFromArray[1], dateFromArray[0]);
+      */
       Transaction.findByNumber(decoded.transactionNumber, function(err, transactions) {
         if (err) {
           return console.error(err);
         }
         // New transaction
-        console.dir(decoded.dateTo);
-        var dateToArray = decoded.dateTo.split('/')
-        decoded.dateTo = new Date(dateToArray[2], dateToArray[1], dateToArray[0]);
-        var dateFromArray = decoded.dateFrom.split('/')
-        decoded.dateFrom = new Date(dateFromArray[2], dateFromArray[1], dateFromArray[0]);
         if (transactions.length == 0) {
           console.log('New transaction');
           var transaction = new Transaction({
@@ -73,12 +75,10 @@ io.use(function(socket, next) {
             dateFrom: decoded.dateFrom,
             dateTo: decoded.dateTo,
             nbPaxRealNa: Number(decoded.nbPaxRealNa),
-            services: [],
-            comments: []
+            services: []
           });
           transaction.save(function(err) {
             if (err) return console.error(err);
-            //res.status(200).json(transaction);
             // Emit transaction
             socket.emit('transaction', transaction);
              next();
@@ -86,17 +86,29 @@ io.use(function(socket, next) {
         }
         else {
           console.log('Existing transaction');
-          console.dir(transactions);
-          //res.status(200).json(transactions[0]);
-          // Emit transaction
-            socket.emit('transaction', transactions[0]);
-            next();
+          // Update existing transaction
+          var transaction = new Transaction(transactions[0]);
+          transaction.resort = decoded.resort;
+          transaction.salePerson = decoded.salePerson;
+          transaction.eventManager = decoded.eventManager;
+          transaction.executivePerson = decoded.executivePerson;
+          transaction.company = decoded.company;
+          transaction.dateFrom = decoded.dateFrom;
+          transaction.dateTo = decoded.dateTo;
+          transaction.nbPaxRealNa = Number(decoded.nbPaxRealNa);
+          transaction.update(function(err) {
+            if (err) return console.error(err);
+            // Emit transaction
+            socket.emit('transaction', transaction);
+             next();
+          });
         }
         //console.log(transaction);
       })
     }
   }
   catch (err) {
+    console.log(err);
     //res.status(403).json({ error: 'Invalid token'});
     next(new Error('Invalid token'));
   }

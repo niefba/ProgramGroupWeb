@@ -10,7 +10,7 @@ config.couchebase.host = "localhost";
 
 // Config for application
 config.app = {};
-config.app.secret = "616161";
+config.app.secret = "stirh4jha2iseb6umn";
 
 // Export config
 module.exports = config;
