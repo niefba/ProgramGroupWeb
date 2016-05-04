@@ -12,19 +12,19 @@ programGroupApp.config(['$routeProvider', '$locationProvider',
   function($routeProvider, $locationProvider) {
     $routeProvider.
     when('/', {
-        templateUrl: 'partials/dashboard.html',
+        templateUrl: '/partials/dashboard.html',
         controller: 'AppCtrl'
       }).
       when('/token/:key', {
-        templateUrl: 'partials/dashboard.html',
+        templateUrl: '/partials/dashboard.html',
         controller: 'AppCtrl'
       }).
       when('/service/:type', {
-        templateUrl: 'partials/service.html',
+        templateUrl: '/partials/service.html',
         controller: 'ServiceCtrl'
       }).
       when('/contractualExtras', {
-        templateUrl: 'partials/service-contractualExtras.html',
+        templateUrl: '/partials/service-contractualExtras.html',
         controller: 'ContractualExtrasCtrl'
       }).
       otherwise({

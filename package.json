@@ -17,6 +17,7 @@
     "express": "4.13.4",
     "jquery": "2.2.1",
     "jwt-simple": "0.5.0",
-    "ottoman": "1.0.3"
+    "ottoman": "1.0.3",
+    "socket.io": "1.4.6"
   }
 }

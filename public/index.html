@@ -9,7 +9,8 @@
   <link rel="stylesheet" href="/css/print.css" media="print">
   <base href="/">
 </head>
-<body ng-controller="AppCtrl">
+<script src="/socket.io/socket.io.js"></script>
+<body ng-controller="AppCtrl" class="ng-cloak">
 
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -41,6 +42,15 @@
   </nav>
 
   <div class="container">
+
+    <h5 ng-show="manager.errorMessage">
+      <div class="alert alert-danger">
+        <button type="button" class="close" ng-click="manager.errorMessage = ''"><span>&times;</span></button>
+        <strong>Error!</strong>
+        {{ manager.errorMessage }}
+      </div>
+    </h5>
+
     <div ng-view></div>
   </div>
 

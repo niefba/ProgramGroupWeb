@@ -19,7 +19,7 @@
       <td>{{ line.serviceType }}</td>
       <td>{{ line.hourFrom }} {{ msg.hourTo | translate:lang }} {{ line.hourTo }}</td>
       <td>{{ msg[line.basicEquipment] | translate:lang }}</td>
-      <td>{{ msg[line.arrangement] | translate:lang }}</td>
+      <td>{{ line.arrangement | translate:lang }}</td>
       <td class="text-right">{{ line.nbPerson }}</td>
       <td class="text-right">{{ line.quantity }}</td>
       <td class="text-right">{{ line.price }} {{ devise }}</td>

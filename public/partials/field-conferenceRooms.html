@@ -42,12 +42,7 @@
 <div class="form-group"  ng-class="{'has-error': formLine.arrangement.$invalid}">
   <label for="arrangement" class="col-sm-4 control-label">{{ msg.arrangement | translate:lang }}</label>
   <div class="col-sm-8">
-    <select class="form-control" name="arrangement" ng-model="line.arrangement" required>
-      <option value="arrangementU">{{ msg.arrangementU | translate:lang }}</option>
-      <option value="arrangementTheatre">{{ msg.arrangementTheatre | translate:lang }}</option>
-      <option value="arrangementConference">{{ msg.arrangementConference | translate:lang }}</option>
-      <option value="arrangementClassroom">{{ msg.arrangementClassroom | translate:lang }}</option>
-    </select>
+    <select class="form-control" name="arrangement" ng-model="line.arrangement" ng-options="option[lang] for option in msg.arrangementOptions track by option.id"></select>
   </div>
 </div>
 

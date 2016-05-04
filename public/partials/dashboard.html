@@ -1,22 +1,6 @@
 <div class="row">
-  <div class="alert alert-warning" ng-show="manager.transaction.error">
-    <strong>Warning!</strong>
-    {{ manager.transaction.error }}
-  </div>
-  
-  <div class="alert alert-success" ng-show="successMessage">
-    <button type="button" class="close" ng-click="successMessage = ''"><span>&times;</span></button>
-    <strong>Success!</strong>
-    {{ successMessage }}
-  </div>
 
-  <div class="alert alert-danger" ng-show="errorMessage">
-    <button type="button" class="close" ng-click="successError = ''"><span>&times;</span></button>
-    <strong>Error!</strong>
-    {{ errorMessage }}
-  </div>
-
-  <div class="col-md-5" ng-hide="manager.transaction.error">
+  <div class="col-md-5">
     <h2 title="Meetings & Events Group Agenda">
       MEGA <small>M&E Group Agenda</small>
       <button type="button" class="btn btn-primary pull-right" ng-click="editTransaction()">
@@ -34,16 +18,16 @@
     	<dt ng-show="manager.transaction.company">{{ msg.company | translate:lang }}</dt><dd>{{ manager.transaction.company }}</dd>
       <dt ng-show="manager.transaction.remarks">{{ msg.remarks | translate:lang }}</dt><dd>{{ manager.transaction.remarks }}</dd>
       <dt ng-show="manager.transaction.companyActivity">{{ msg.companyActivity | translate:lang }}</dt>
-      <dd ng-hide="manager.transaction.companyActivity == 'other'">{{ msg[manager.transaction.companyActivity] | translate:lang }}</dd>
-      <dd ng-show="manager.transaction.companyActivity == 'other'">{{ manager.transaction.companyActivityOther }}</dd>
+      <dd ng-hide="manager.transaction.companyActivity.id == 'other'">{{ manager.transaction.companyActivity | translate:lang }}</dd>
+      <dd ng-show="manager.transaction.companyActivity.id == 'other'">{{ manager.transaction.companyActivityOther }}</dd>
       <dt ng-show="manager.transaction.aimOfMeeting">{{ msg.aimOfMeeting | translate:lang }}</dt>
-      <dd ng-hide="manager.transaction.aimOfMeeting == 'other'">{{ msg[manager.transaction.aimOfMeeting] | translate:lang }}</dd>
-      <dd ng-show="manager.transaction.aimOfMeeting == 'other'">{{ manager.transaction.aimOfMeetingOther }}</dd>
+      <dd ng-hide="manager.transaction.aimOfMeeting.id == 'other'">{{ manager.transaction.aimOfMeeting | translate:lang }}</dd>
+      <dd ng-show="manager.transaction.aimOfMeeting.id == 'other'">{{ manager.transaction.aimOfMeetingOther }}</dd>
       <div ng-repeat="leader in manager.transaction.leaders">
         <dt>{{ msg.leaderName | translate:lang }}</dt><dd>{{ leader.leaderName }}</dd>
         <dt>{{ msg.leaderFunction | translate:lang }}</dt>
-        <dd ng-hide="leader.leaderFunction == 'other'">{{ msg[leader.leaderFunction] | translate:lang }}</dd>
-        <dd ng-show="leader.leaderFunction == 'other'">{{ leader.leaderFunctionOther }}</dd>
+        <dd ng-hide="leader.leaderFunction.id == 'other'">{{ leader.leaderFunction | translate:lang }}</dd>
+        <dd ng-show="leader.leaderFunction.id == 'other'">{{ leader.leaderFunctionOther }}</dd>
       </div>
     	<dt ng-show="manager.transaction.dateFrom">{{ msg.dates | translate:lang }}</dt>
       <dd ng-show="manager.transaction.dateFrom">{{ msg.from | translate:lang }} {{ manager.transaction.dateFrom | date: 'yyyy-MM-dd' }} {{ msg.to | translate:lang }} {{ manager.transaction.dateTo | date: 'yyyy-MM-dd' }}</dd>
@@ -56,7 +40,7 @@
     </dl>
   </div>
 
-  <div class="col-md-3" ng-hide="manager.transaction.error">
+  <div class="col-md-3">
     <h2>{{ msg.services | translate:lang }}</h2>
     <ul class="list-unstyled">
       <li><a href="service/conferenceInformation">{{ msg.conferenceInformation | translate:lang }}</a>
@@ -162,7 +146,7 @@
     </ul>
   </div>
 
-  <div class="col-md-4" ng-hide="manager.transaction.error">
+  <div class="col-md-4">
     <h2>{{ msg.documents | translate:lang }}
       <div class="btn-group pull-right">
         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

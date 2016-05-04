@@ -13,31 +13,14 @@ angular.module('app.services', [], function($provide) {
       var ManagerFactory = {
 
         saveTransaction : function (transaction) {
-          $http({
-            url: '/saveTransaction',
-            method: "POST",
-            data: {transaction: transaction},
-          }).
-          error(function(data, status, headers, config) {
-            //$scope.errorMessage = 'Translation error';
-          }).
-          success(function(data, status, headers, config) {
-            manager.transaction = transaction;
-            //$scope.data = $scope.transaction;
-          });
-
+          manager.socket.emit('saveTransaction', angular.toJson(manager.transaction));
         },
-         init : function (key) {
-            $http({
-              url: '/data',
-              method: "GET",
-              params: {token: key},
-            }).
-            error(function(data, status, headers, config) {
-               console.log(data);
-            }).
-            success(function(data, status, headers, config) {
-              console.log(data);
+         init : function (socket) {
+            manager.socket = socket;
+
+            // Retrieve transaction
+            socket.on('transaction', function (data) {
+              console.dir(data);
               manager.transaction = data;
               var types = ['eventPersonalization', 'vipOffered', 'vip', 'arrivalNoTransfer', 'departNoTransfer',
                 'transferArrival', 'transfertDepart', 'coffeeBreaks', 'cocktails', 'restaurantIncluded', 'restaurantExtra', 'additionalMeals', 'conferenceRooms',
@@ -47,8 +30,8 @@ angular.module('app.services', [], function($provide) {
                   manager.transaction[type] = {commentProduction: '', commentResort: ''};
                 }
               });
-               
               $location.path('/');
+              $rootScope.$apply();
             });
          },
          get : function () {
@@ -120,10 +103,12 @@ angular.module('app.services', [], function($provide) {
       "radioDinner" : {"fr": "Dîner", "en": "Dinner"},
 
       // Select arrangement
-      "arrangementU" : {"fr": "En U", "en": "U style"},
-      "arrangementTheatre" : {"fr": "Théâtre", "en": "Theatre"},
-      "arrangementConference" : {"fr": "Conférence", "en": "Conference"},
-      "arrangementClassroom" : {"fr": "Salle de classe", "en": "Classroom"},
+      "arrangementOptions" : [
+        {id: 'uStyle', "fr": "En U", "en": "U style"},
+        {id: 'theatre', "fr": "Théâtre", "en": "Theatre"},
+        {id: 'conference', "fr": "Conférence", "en": "Conference"},
+        {id: 'classroom', "fr": "Salle de classe", "en": "Classroom"}
+      ],
 
       // Select payment
       "paymentClubmed"               : {"fr": "M&E", "en": "M&E"},
@@ -131,24 +116,33 @@ angular.module('app.services', [], function($provide) {
       "paymentResort"               : {"fr": "Village", "en": "Resort"},
 
       // Select companyActivity
-      "companyActivityTravelAgency" : {"fr": "Agence de voyage", "en": "Travel agency"},
-      "companyActivityIndustry" :  {"fr": "Industrie", "en": "Industry"},
+      "companyActivityOptions" : [
+        {id: 'travelAgency', "fr": "Agence de voyage", "en": "Travel agency"},
+        {id: 'industry', "fr": "Industrie", "en": "Industry"},
+        {id: 'other', "fr": "Autre", "en": "Other"}
+      ],
 
       // Select aimOfMeeting
-      "aimOfMeetingChallenge" :  {"fr": "Challenge", "en": "Challenge"},
-      "aimOfMeetingRelaxation" : {"fr": "Détente", "en": "Relaxation"},
-      "aimOfMeetingSeminar" : {"fr": "Séminaire de travail", "en": "Seminar work"},
-      "aimOfMeetingReward" : {"fr": "Récompense", "en": "Reward"},
-      "aimOfMeetingUniteTeams" : {"fr": "Fédérer les équipes", "en": "Unite teams"},
-      "aimOfMeetingCustomersTravel" : {"fr": "Voyage clients", "en": "Customers travel"},
-      "aimOfMeetingProductLaunch" : {"fr": "Lancement de produit", "en": "Product launch"},
-      "aimOfMeetingConvention" : {"fr": "Convention", "en": "Convention"},
-      "aimOfMeetingTraining" : {"fr": "Formation", "en": "Training"},
-      "aimOfMeetingTeamBuilding" : {"fr": "Team building", "en": "Team building"},
+      "aimOfMeetingOptions" : [
+        {id: 'challenge', "fr": "Challenge", "en": "Challenge"},
+        {id: 'relaxation', "fr": "Détente", "en": "Relaxation"},
+        {id: 'seminar', "fr": "Séminaire de travail", "en": "Seminar work"},
+        {id: 'reward', "fr": "Récompense", "en": "Reward"},
+        {id: 'uniteTeams', "fr": "Fédérer les équipes", "en": "Unite teams"},
+        {id: 'customersTravel', "fr": "Voyage clients", "en": "Customers travel"},
+        {id: 'productLauch', "fr": "Lancement de produit", "en": "Product launch"},
+        {id: 'convention', "fr": "Convention", "en": "Convention"},
+        {id: 'training', "fr": "Formation", "en": "Training"},
+        {id: 'teamBuilding', "fr": "Team building", "en": "Team building"},
+        {id: 'other', "fr": "Autre", "en": "Other"}
+      ],
 
       // Select leaderFunction
-      "leaderFunctionDirector" : {"fr": "Directeur", "en": "CEO"},
-      "leaderFunctionManager" : {"fr": "Manager", "en": "Manager"},
+      "leaderFunctionOptions" : [
+        {id: 'director', "fr": "Directeur", "en": "CEO"},
+        {id: 'manager', "fr": "Manager", "en": "Manager"},
+        {id: 'other', "fr": "Autre", "en": "Other"}
+      ],
 
       "noLine"               : {"fr": "Aucune ligne.", "en": "No line."},
       "noComment"               : {"fr": "Aucun commentaire.", "en": "No comment."},

@@ -10,8 +10,25 @@ programGroupControllers.controller('AppCtrl', ['$scope', '$filter',  '$routePara
   function ($scope, $filter, $routeParams, Manager, Translation, $location, $window) {
 
     if ($routeParams.key) {
-      Manager.init($routeParams.key);
+      //$scope.socket = io();
+      $window.sessionStorage.token = $routeParams.key;
+      $scope.socket = io.connect('http://' + $location.host() + ':' + $location.port(), {query: 'token=' + $window.sessionStorage.token});
+      
+      $scope.socket.on('error', function (error) {
+        $scope.manager.errorMessage = error;
+        $scope.$apply();
+        /*
+        if (error == 'token expired') {
+          delete $window.sessionStorage.token;
+          $window.location.href = '/';
+        }
+        */
+        console.log(error);
+      });
+
+      Manager.init($scope.socket);
     }
+
     $scope.manager = Manager.get();
     $scope.location = $location;
     $scope.msg = Translation.getMsg();
@@ -50,7 +67,8 @@ programGroupControllers.controller('AppCtrl', ['$scope', '$filter',  '$routePara
     }
 
     $scope.saveTransaction = function (transaction) {
-      Manager.saveTransaction(transaction);
+      $scope.manager.transaction = transaction;
+      Manager.saveTransaction();
       $scope.closeTemplate();
     }
 
@@ -72,7 +90,7 @@ programGroupControllers.controller('ContractualExtrasCtrl', ['$scope', 'filterFi
 
     $scope.saveMonthlyRate = function (monthlyRate) {
       $scope.manager.transaction.monthlyRate = monthlyRate;
-      Manager.saveTransaction($scope.manager.transaction);
+      Manager.saveTransaction();
     }
 
     $scope.copyToResort = function (line) {
@@ -84,7 +102,7 @@ programGroupControllers.controller('ContractualExtrasCtrl', ['$scope', 'filterFi
         $scope.line.quantityResort = $scope.line.quantity;
       }
       $scope.line.priceResort = $scope.line.price;
-      Manager.saveTransaction($scope.manager.transaction);
+      Manager.saveTransaction();
       $scope.calculTotal();
     }
 
@@ -100,7 +118,7 @@ programGroupControllers.controller('ContractualExtrasCtrl', ['$scope', 'filterFi
     }
 
     $scope.saveLine = function (line) {
-      Manager.saveTransaction($scope.manager.transaction);
+      Manager.saveTransaction();
       $scope.calculTotal();
       $scope.closeTemplate();
     }
@@ -155,13 +173,13 @@ programGroupControllers.controller('ServiceCtrl', ['$scope', '$routeParams', 'fi
           break
         }
       }
-      Manager.saveTransaction($scope.manager.transaction);
+      Manager.saveTransaction();
       $scope.calculTotal();
     }
 
     $scope.copyLine = function (line) {
       $scope.manager.transaction.services.push(angular.copy(line));
-      Manager.saveTransaction($scope.manager.transaction);
+      Manager.saveTransaction();
       $scope.calculTotal();
     }
 
@@ -193,7 +211,7 @@ programGroupControllers.controller('ServiceCtrl', ['$scope', '$routeParams', 'fi
       if ($scope.newLine) {
         $scope.manager.transaction.services.push(line);
       }
-      Manager.saveTransaction($scope.manager.transaction);
+      Manager.saveTransaction();
       $scope.calculTotal();
       $scope.closeTemplate();
     }
@@ -209,7 +227,7 @@ programGroupControllers.controller('ServiceCtrl', ['$scope', '$routeParams', 'fi
 
     $scope.saveComment = function (comment) {
       $scope.manager.transaction[$scope.type][$scope.commentFrom] = comment;
-      Manager.saveTransaction($scope.manager.transaction);
+      Manager.saveTransaction();
       $scope.closeTemplate();
     }
 
